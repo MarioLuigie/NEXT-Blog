@@ -2,7 +2,7 @@
 import Link from 'next/link'
 //components
 import Logo from '@/components/content/Logo'
-import Navigation from '@/components/layout/Navigation'
+import Nav from '@/components/layout/Nav'
 //lib
 import { paths } from '@/lib/constants/paths'
 
@@ -12,7 +12,7 @@ export default function Header() {
 			<Link href={paths.HOME}>
 				<Logo />
 			</Link>
-			<Navigation />
+			<Nav />
 		</header>
 	)
 }
