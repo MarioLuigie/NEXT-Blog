@@ -1,7 +1,7 @@
 export default function Posts() {
 
   return (
-    <div>
+    <div className="flex-center">
       POSTS
     </div>
   )

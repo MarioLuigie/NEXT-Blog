@@ -9,8 +9,8 @@ export type NavItem = {
 function NavItem({ data: { label, href } }: { data: NavItem }) {
 	return (
 		<li>
-			<Link href={href}>
-				<p className="text-lg">{label}</p>
+			<Link href={href} className="text-lg text-zinc-700">
+				{label}
 			</Link>
 		</li>
 	)
