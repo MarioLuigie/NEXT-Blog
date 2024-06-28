@@ -1,5 +1,8 @@
-import Logo from '@/components/content/Logo'
+//modules
 import Link from 'next/link'
+//components
+import Logo from '@/components/content/Logo'
+//lib
 import { paths } from '@/lib/constants/paths'
 
 export default function Header() {

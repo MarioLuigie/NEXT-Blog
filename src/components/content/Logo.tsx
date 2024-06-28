@@ -1,3 +1,4 @@
+//components
 import SVGImage from '@/components/shared/SVGImage'
 
 export default function Logo() {
