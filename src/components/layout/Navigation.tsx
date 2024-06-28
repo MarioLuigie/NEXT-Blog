@@ -19,7 +19,7 @@ export default function Navigation() {
 		<nav>
 			<ul className="flex gap-4">
 				{navigation.map((item) => (
-					<NavigationItem data={item} />
+					<NavigationItem data={item} key={item.label}/>
 				))}
 			</ul>
 		</nav>
