@@ -1,17 +1,16 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
 
 const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
-    },
-  },
-  plugins: [
+	content: [
+		'./src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+		'./src/components/**/*.{js,ts,jsx,tsx,mdx}',
+		'./src/app/**/*.{js,ts,jsx,tsx,mdx}',
+	],
+	theme: {
+		extend: {},
+	},
+	plugins: [
 		require('tailwindcss-animate'),
 		plugin(({ addUtilities }) => {
 			addUtilities({
@@ -41,5 +40,5 @@ const config: Config = {
 			})
 		}),
 	],
-};
-export default config;
+}
+export default config
