@@ -13,7 +13,7 @@ export default function Home() {
 				<div>
 					<p className="text-center text-xl text-gray-900 mb-6">
 						Welcome to the world of filmmaking, where every frame tells a
-						story and every edit builds emotions. Don't be short of time!
+						story and every edit builds emotions. Don&apos;t be short of time!
 					</p>
 				</div>
 			</div>
