@@ -1,10 +1,7 @@
-export default function Page({ params, searchParams }: { params: any, searchParams: any}) {
-
-  const { id } = searchParams
+export default function Page({ params }: { params: any }) {
 
   return (
     <div>
-      searchParams: {id}
       params: {params.post}
     </div>
   )
