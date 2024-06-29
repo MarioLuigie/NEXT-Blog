@@ -15,7 +15,5 @@ export default async function Page() {
 
 	const { posts } = await res.json()
 
-	console.log(posts)
-
 	return <Posts posts={posts} />
 }
