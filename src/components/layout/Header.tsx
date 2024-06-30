@@ -8,7 +8,7 @@ import { paths } from '@/lib/constants/paths'
 
 export default function Header() {
 	return (
-		<header className="bg-zinc-100 shadow-lg p-10 z-40 flex-between h-[180px]">
+		<header className="bg-zinc-100 shadow-lg p-5 z-40 flex-between h-[150px]">
 			<Link href={paths.HOME}>
 				<Logo />
 			</Link>
