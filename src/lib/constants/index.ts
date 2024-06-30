@@ -8,5 +8,9 @@ export const navItems = [
   {
     label: 'posts',
     href: paths.POSTS
-  }
+  },
+  {
+    label: 'create post',
+    href: paths.CREATE_POST
+  },
 ]

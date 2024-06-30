@@ -1,4 +1,5 @@
 export const paths = {
   HOME: '/',
-  POSTS: '/posts'
+  POSTS: '/posts',
+  CREATE_POST: 'create-post'
 }

@@ -1,10 +1,9 @@
-import Loader from "@/components/shared/Loader"
+import Loader from '@/components/shared/Loader'
 
 export default function Loading() {
-
-  return (
-    <div className="flex-center grow">
-      <Loader />
-    </div>
-  )
+	return (
+		<div className="flex-center grow">
+			<Loader />
+		</div>
+	)
 }
