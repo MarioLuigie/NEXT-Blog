@@ -12,7 +12,7 @@ export default function FormField({
 	placeholder: string
 	label: string
 	register: UseFormRegisterReturn
-	errors: FieldError
+	errors: FieldError | undefined
 	textarea?: true
 }) {
 	const commonClasses =
