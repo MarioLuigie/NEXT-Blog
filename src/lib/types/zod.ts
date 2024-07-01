@@ -5,6 +5,10 @@ export const createPostSchema = z.object({
 		.string()
 		.min(5, { message: 'Write min 5 characters' })
 		.max(40, { message: 'Write max 40 characters' }),
+	article: z
+		.string()
+		.min(40, { message: 'Enter min 40 characters' })
+		.max(350, { message: 'Enter max 350 characters' }),
 })
 
 export type CreatePostFieldsType = z.infer<typeof createPostSchema>

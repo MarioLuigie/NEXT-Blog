@@ -11,6 +11,7 @@ export default function CreatePostForm() {
 		register,
 		handleSubmit,
 		reset,
+    getValues,
 		formState: { errors, isSubmitting },
 	} = useForm<CreatePostFieldsType>({
 		resolver: zodResolver(createPostSchema),
@@ -28,18 +29,24 @@ export default function CreatePostForm() {
 		reset()
 	}
 
+  console.log('GET VALUES:', getValues());
+
 	return (
-		<form
-			onSubmit={handleSubmit(onSubmit)}
-			className="p-10 rounded-md shadow-xl flex flex-col gap-10 max-w-[600px] min-w-[400px]"
-		>
-			<div className="pb-10">
+		<form onSubmit={handleSubmit(onSubmit)}>
+			<div className="mb-20 flex flex-col gap-8">
 				<FormField
 					register={register('title')}
 					errors={errors.title}
 					label="Title"
 					type="text"
 					placeholder="Enter title"
+				/>
+				<FormField
+					register={register('article')}
+					errors={errors.article}
+					label="Article"
+					placeholder="Enter Article"
+          textarea
 				/>
 			</div>
 			<div className="flex flex-col gap-5">

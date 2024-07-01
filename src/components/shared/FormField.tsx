@@ -6,31 +6,43 @@ export default function FormField({
 	label,
 	register,
 	errors,
+	textarea,
 }: {
-	type: string
+	type?: string
 	placeholder: string
 	label: string
 	register: UseFormRegisterReturn
 	errors: any
+	textarea?: true
 }) {
 	return (
-		<div className="gap-2 flex flex-col w-full">
+		<div className="gap-2 flex flex-col w-full relative">
 			<label className="w-[200px] flex justify-start text-sm text-gray-600 font-semibold">
 				{label}
 			</label>
-			<div className="relative">
+			{textarea ? (
+				<textarea
+					{...register}
+					placeholder={placeholder}
+					className={`p-2 pl-4 border rounded-md w-full border-gray-400 focus:outline-none focus:ring-gray-700 focus:border-gray-700 input-no-placeholder`}
+					style={{
+						height: '100px',
+						resize: 'none',
+					}}
+				/>
+			) : (
 				<input
 					{...register}
 					type={type}
 					placeholder={placeholder}
 					className="p-2 pl-4 border rounded-md w-full border-gray-400 focus:outline-none focus:ring-gray-700 focus:border-gray-700 input-no-placeholder"
 				/>
-				{errors && (
-					<p className="text-red-400 text-xs w-full absolute top-[50px] left-[17px] z-40">
-						{errors.message}
-					</p>
-				)}
-			</div>
+			)}
+			{errors && (
+				<p className="text-red-400 text-xs w-full bottom-[-20px] absolute left-[17px] z-40">
+					{errors.message}
+				</p>
+			)}
 		</div>
 	)
 }
