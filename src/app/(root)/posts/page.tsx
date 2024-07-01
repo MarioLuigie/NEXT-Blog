@@ -1,4 +1,4 @@
-import Posts from '@/components/pages/Posts'
+import PostsList from '@/components/pages/PostsList'
 
 export const metadata = {
 	title: 'Posts',
@@ -15,5 +15,5 @@ export default async function Page() {
 
 	const { posts } = await res.json()
 
-	return <Posts posts={posts} />
+	return <PostsList posts={posts} />
 }

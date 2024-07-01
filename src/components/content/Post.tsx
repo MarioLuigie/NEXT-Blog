@@ -1,20 +1,14 @@
-//modules
-import Link from 'next/link'
-//lib
-import { truncateText } from '@/lib/utils'
 import { IPost } from '@/lib/types'
 
-export default function Post({ post }: { post: IPost }) {
+export default function Post({ data }: { data: IPost }) {
+	const { title, body } = data
 	return (
-		<li className="flex flex-col gap-6 w-full shadow-lg p-10 rounded-sm">
-			<Link href={`/posts/${post.id}`}>
-				<h1 className="text-3xl font-extrabold text-gray-900 leading-tight">
-					{post.title}
-				</h1>
-			</Link>
-			<p className="text-lg text-gray-800 text-justify">
-				{truncateText(post.body, 100)}
-			</p>
-		</li>
+		<div className="flex flex-wrap shadow-2xl grow">
+			<div className="min-w-[300px] min-h-[300px] w-[100%] sm:w-1/2 lg:w-2/3 bg-zinc-200 grow"></div>
+			<div className="flex flex-col w-[100%] sm:w-1/2 lg:w-1/3 grow p-10">
+				<h2 className="text-4xl text-zinc-900 font-bold">{title}</h2>
+				<p className="pt-10 text-justify">{body}</p>
+			</div>
+		</div>
 	)
 }
