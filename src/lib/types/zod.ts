@@ -7,8 +7,8 @@ export const createPostSchema = z.object({
 		.max(40, { message: 'Write max 40 characters' }),
 	article: z
 		.string()
-		.min(40, { message: 'Enter min 40 characters' })
-		.max(350, { message: 'Enter max 350 characters' }),
+		.min(40, { message: 'Write min 40 characters' })
+		.max(350, { message: 'Write max 350 characters' }),
 })
 
 export type CreatePostFieldsType = z.infer<typeof createPostSchema>

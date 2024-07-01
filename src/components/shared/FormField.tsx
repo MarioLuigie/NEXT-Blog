@@ -1,4 +1,4 @@
-import { UseFormRegisterReturn } from 'react-hook-form'
+import { UseFormRegisterReturn, FieldError } from 'react-hook-form'
 
 export default function FormField({
 	type,
@@ -12,9 +12,11 @@ export default function FormField({
 	placeholder: string
 	label: string
 	register: UseFormRegisterReturn
-	errors: any
+	errors: FieldError
 	textarea?: true
 }) {
+	const commonClasses =
+		'p-2 pl-4 border rounded-md w-full border-gray-400 focus:outline-none focus:ring-gray-700 focus:border-gray-700 input-no-placeholder'
 	return (
 		<div className="gap-2 flex flex-col w-full relative">
 			<label className="w-[200px] flex justify-start text-sm text-gray-600 font-semibold">
@@ -24,7 +26,7 @@ export default function FormField({
 				<textarea
 					{...register}
 					placeholder={placeholder}
-					className={`p-2 pl-4 border rounded-md w-full border-gray-400 focus:outline-none focus:ring-gray-700 focus:border-gray-700 input-no-placeholder`}
+					className={commonClasses}
 					style={{
 						height: '100px',
 						resize: 'none',
@@ -35,7 +37,7 @@ export default function FormField({
 					{...register}
 					type={type}
 					placeholder={placeholder}
-					className="p-2 pl-4 border rounded-md w-full border-gray-400 focus:outline-none focus:ring-gray-700 focus:border-gray-700 input-no-placeholder"
+					className={commonClasses}
 				/>
 			)}
 			{errors && (
