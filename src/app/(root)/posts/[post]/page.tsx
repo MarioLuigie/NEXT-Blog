@@ -1,13 +1,5 @@
-import Post from '@/components/content/Post'
+import Post from '@/components/pages/Post'
 
-export default async function Page({ params }: { params: { post: string } }) {
-	const res = await fetch(`https://dummyjson.com/posts/${params.post}`)
-
-	if (!res.ok) {
-		console.error('Problem with fetching post')
-		return
-	}
-
-	const data = await res.json()
-	return <Post data={data} />
+export default function Page({ params }: { params: { post: string } }) {
+	return <Post params={params}/>
 }

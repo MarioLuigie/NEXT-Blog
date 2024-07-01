@@ -5,15 +5,6 @@ export const metadata = {
 	description: 'Posts added from users',
 }
 
-export default async function Page() {
-	const res = await fetch('https://dummyjson.com/posts?limit=10')
-
-	if (!res.ok) {
-		console.error('Data fetching unsuccessfull. Check app/api/posts/page.tsx')
-		return
-	}
-
-	const { posts } = await res.json()
-
-	return <PostsList posts={posts} />
+export default function Page() {
+	return <PostsList />
 }
