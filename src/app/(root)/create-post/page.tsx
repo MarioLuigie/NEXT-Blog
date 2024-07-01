@@ -1,8 +1,5 @@
-export default function Page() {
+import CreatePost from '@/components/pages/CreatePost'
 
-  return (
-    <div>
-      CREATE POST
-    </div>
-  )
+export default function Page() {
+	return <CreatePost />
 }
