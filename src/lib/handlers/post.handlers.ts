@@ -2,13 +2,18 @@
 import { UseFormReset } from 'react-hook-form'
 //lib
 import { CreatePostFieldsType } from '../types/zod'
+import { IResult } from '@/lib/types/results'
 import { createPost } from '@/lib/actions/post.actions'
 import {
 	toastSuccess,
 	toastError,
-	toastWarn,
-	toastInfo,
 } from '@/lib/utils/toasts'
+
+//Interfejs tylko chwilowo, bo nie posiadam typu z modelu mongoosowego dla zapisywanej do DB daty
+interface IData {
+	title: string
+	article: string
+}
 
 export const handleResetForm =
 	(reset: UseFormReset<CreatePostFieldsType>) =>
@@ -23,13 +28,14 @@ export const handleCreatePost = async (data: CreatePostFieldsType) => {
 			setTimeout(resolve, 2000)
 		})
 
-		const result = await createPost(data)
+		const result: IResult<IData> = await createPost(data)
 
-		toastSuccess({ message: 'Article added with successfully!' })
-		toastInfo({ message: 'Article added with successfully!' })
-		// toastError({ message: 'Something went wrong. Try again later.' })
-		toastError(result.error)
-		// toastWarn('Something went wrong. Try again later.')
+		if (result.error) {
+			toastError(result.error)
+		} else if (result.data) {
+			toastSuccess({ message: 'Post added with successfully!' })
+		}
+
 	} catch (err) {
 		console.error(err)
 	}

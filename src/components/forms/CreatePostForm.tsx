@@ -28,7 +28,10 @@ export default function CreatePostForm() {
 			await handleCreatePost(data)
 
 			reset()
-		} catch (err) {}
+			
+		} catch (err) {
+			console.error(err)
+		}
 	}
 
 	console.log('GET VALUES:', getValues())
