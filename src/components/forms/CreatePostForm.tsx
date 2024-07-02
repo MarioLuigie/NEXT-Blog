@@ -2,9 +2,15 @@
 //modules
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+//lib
 import { createPostSchema, CreatePostFieldsType } from '@/lib/types/zod'
+//components
 import FormField from '@/components/shared/FormField'
 import Button from '@/components/shared/Button'
+//actions
+import { createPost } from '@/lib/actions/post.actions'
+//handlers
+import { handleResetForm, handleCreatePost } from '@/lib/handlers/post.handlers'
 
 export default function CreatePostForm() {
 	const {
@@ -21,17 +27,10 @@ export default function CreatePostForm() {
 		data: CreatePostFieldsType
 	) => {
 		try {
-			const res = await new Promise((resolve) => {
-				setTimeout(resolve, 2000)
-			})
+			await handleCreatePost(data)
 
-      reset()
+			reset()
 		} catch (err) {}
-	}
-
-	const handleResetForm = (e: React.MouseEvent<HTMLButtonElement>) => {
-		e.preventDefault()
-		reset()
 	}
 
 	console.log('GET VALUES:', getValues())
@@ -64,7 +63,7 @@ export default function CreatePostForm() {
 					label={'Clear'}
 					type="reset"
 					outline
-					onClick={handleResetForm}
+					onClick={handleResetForm(reset)}
 				/>
 			</div>
 		</form>
