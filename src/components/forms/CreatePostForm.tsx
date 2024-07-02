@@ -11,7 +11,7 @@ export default function CreatePostForm() {
 		register,
 		handleSubmit,
 		reset,
-    getValues,
+		getValues,
 		formState: { errors, isSubmitting },
 	} = useForm<CreatePostFieldsType>({
 		resolver: zodResolver(createPostSchema),
@@ -21,6 +21,11 @@ export default function CreatePostForm() {
 		data: CreatePostFieldsType
 	) => {
 		try {
+			const res = await new Promise((resolve) => {
+				setTimeout(resolve, 2000)
+			})
+
+      reset()
 		} catch (err) {}
 	}
 
@@ -29,7 +34,7 @@ export default function CreatePostForm() {
 		reset()
 	}
 
-  console.log('GET VALUES:', getValues());
+	console.log('GET VALUES:', getValues())
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
@@ -39,14 +44,14 @@ export default function CreatePostForm() {
 					errors={errors.title}
 					label="Title"
 					type="text"
-					placeholder="Enter title"
+					placeholder="Enter title for new article"
 				/>
 				<FormField
 					register={register('article')}
 					errors={errors.article}
 					label="Article"
-					placeholder="Enter Article"
-          textarea
+					placeholder="Enter new article text"
+					textarea
 				/>
 			</div>
 			<div className="flex flex-col gap-5">

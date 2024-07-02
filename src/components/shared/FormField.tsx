@@ -16,7 +16,7 @@ export default function FormField({
 	textarea?: true
 }) {
 	const commonClasses =
-		'p-2 pl-4 border rounded-md w-full border-gray-400 focus:outline-none focus:ring-gray-700 focus:border-gray-700 input-no-placeholder'
+		'p-2 pl-4 border rounded-md w-full border-gray-400 focus:outline-none focus:ring-gray-700 focus:border-gray-700 input-no-placeholder placeholder:text-zinc-400 font-light'
 	return (
 		<div className="gap-2 flex flex-col w-full relative">
 			<label className="w-[200px] flex justify-start text-sm text-gray-600 font-semibold">
