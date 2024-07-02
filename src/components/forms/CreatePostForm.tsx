@@ -7,8 +7,6 @@ import { createPostSchema, CreatePostFieldsType } from '@/lib/types/zod'
 //components
 import FormField from '@/components/shared/FormField'
 import Button from '@/components/shared/Button'
-//actions
-import { createPost } from '@/lib/actions/post.actions'
 //handlers
 import { handleResetForm, handleCreatePost } from '@/lib/handlers/post.handlers'
 
@@ -43,13 +41,13 @@ export default function CreatePostForm() {
 					errors={errors.title}
 					label="Title"
 					type="text"
-					placeholder="Enter title for new article"
+					placeholder="Enter title for new article..."
 				/>
 				<FormField
 					register={register('article')}
 					errors={errors.article}
 					label="Article"
-					placeholder="Enter new article text"
+					placeholder="Enter new article text..."
 					textarea
 				/>
 			</div>
