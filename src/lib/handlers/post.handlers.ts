@@ -3,7 +3,12 @@ import { UseFormReset } from 'react-hook-form'
 //lib
 import { CreatePostFieldsType } from '../types/zod'
 import { createPost } from '@/lib/actions/post.actions'
-import { toastSuccess, toastError } from '@/lib/utils/toasts'
+import {
+	toastSuccess,
+	toastError,
+	toastWarn,
+	toastInfo,
+} from '@/lib/utils/toasts'
 
 export const handleResetForm =
 	(reset: UseFormReset<CreatePostFieldsType>) =>
@@ -20,9 +25,11 @@ export const handleCreatePost = async (data: CreatePostFieldsType) => {
 
 		const result = await createPost(data)
 
-		toastSuccess('Success!')
-		// toastError('Something went wrong. Try again later.')
-
+		toastSuccess({ message: 'Article added with successfully!' })
+		toastInfo({ message: 'Article added with successfully!' })
+		// toastError({ message: 'Something went wrong. Try again later.' })
+		toastError(result.error)
+		// toastWarn('Something went wrong. Try again later.')
 	} catch (err) {
 		console.error(err)
 	}

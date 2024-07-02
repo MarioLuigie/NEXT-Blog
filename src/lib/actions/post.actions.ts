@@ -4,5 +4,9 @@ import { CreatePostFieldsType } from '@/lib/types/zod'
 
 //CREATE
 export async function createPost(data: CreatePostFieldsType) {
-  return
+	try {
+		throw new Error()
+	} catch (err: any) {
+		return { success: false, error: { message: 'Post has not been added' } }
+	}
 }
