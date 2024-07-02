@@ -47,8 +47,14 @@ export function toastError({ message }: { message: string | string[] }) {
 	})
 }
 
-export function toastWarn(message: string) {
-	toast.warn(message, { position: position })
+export function toastWarn({ message }: { message: string | string[] }) {
+	const messages = Array.isArray(message) ? message : [message]
+
+	messages.forEach((msg) => {
+		toast.warn(<ToastContent title="Warning!" message={msg} />, {
+			position: position,
+		})
+	})
 }
 
 // export function appToast(message: string) {

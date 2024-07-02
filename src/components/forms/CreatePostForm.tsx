@@ -34,8 +34,6 @@ export default function CreatePostForm() {
 		}
 	}
 
-	console.log('GET VALUES:', getValues())
-
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="mb-20 flex flex-col gap-8">
