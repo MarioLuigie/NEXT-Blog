@@ -25,6 +25,8 @@ export default async function Header() {
 			) : (
 				<LogoutLink>Log out</LogoutLink>
 			)}
+				<LogoutLink>Log out</LogoutLink>
+
 		</header>
 	)
 }

@@ -7,7 +7,16 @@ const nextConfig = {
         hostname: "pexels.com"
       },
     ]
-  }
+  },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/dashboard',
+        permanent: true, 
+      },
+    ];
+  },
 };
 
 export default nextConfig;
