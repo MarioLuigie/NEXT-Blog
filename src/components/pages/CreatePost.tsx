@@ -15,7 +15,8 @@ export default async function CreatePost() {
 			</div>
 		)
 	} else {
-		redirect('/api/auth/login?post_login_redirect_url=/create-post')
+		redirect('/api/auth/login')
+		// redirect('/api/auth/login?post_login_redirect_url=/create-post')
 	}
 
 }

@@ -1,6 +1,10 @@
-import { toast } from 'react-toastify'
+import { toast, ToastOptions } from 'react-toastify'
 
-const position = 'bottom-right'
+const config: ToastOptions = {
+	position: 'bottom-right',
+	hideProgressBar: false,
+	autoClose: 4000,
+}
 
 const ToastContent = ({
 	title,
@@ -17,45 +21,56 @@ const ToastContent = ({
 	)
 }
 
-export function toastInfo({ message }: { message: string | string[] }) {
-	const messages = Array.isArray(message) ? message : [message]
+export function toastInfo(data: { message: string }) {
+	const messages = Object.values(data)
 
 	messages.forEach((msg) => {
 		toast(<ToastContent title="Info" message={msg} />, {
-			position: position,
+			...config,
 		})
 	})
 }
 
-export function toastSuccess({ message }: { message: string | string[] }) {
-	const messages = Array.isArray(message) ? message : [message]
+export function toastSuccess(data: { [key: string]: string }) {
+	const messages = Object.values(data)
 
 	messages.forEach((msg) => {
 		toast.success(<ToastContent title="Success!" message={msg} />, {
-			position: position,
+			...config,
 		})
 	})
 }
 
-export function toastError({ message }: { message: string | string[] }) {
-	const messages = Array.isArray(message) ? message : [message]
+export function toastError(data: { [key: string]: string }) {
+	const messages = Object.values(data)
 
 	messages.forEach((msg) => {
 		toast.error(<ToastContent title="Error!" message={msg} />, {
-			position: position,
+			...config,
 		})
 	})
 }
 
-export function toastWarn({ message }: { message: string | string[] }) {
-	const messages = Array.isArray(message) ? message : [message]
+export function toastWarn(data: { message: string }) {
+	const messages = Object.values(data)
 
 	messages.forEach((msg) => {
 		toast.warn(<ToastContent title="Warning!" message={msg} />, {
-			position: position,
+			...config,
 		})
 	})
 }
+
+// toast.success(toastContent, {
+// 	position: "top-right",
+// 	autoClose: 5000,
+// 	hideProgressBar: false,
+// 	closeOnClick: true,
+// 	pauseOnHover: true,
+// 	draggable: true,
+// 	progress: undefined,
+// 	className: 'custom-toast',
+// });
 
 // export function appToast(message: string) {
 // 	toast(message, { position: position })
@@ -71,4 +86,14 @@ export function toastWarn({ message }: { message: string | string[] }) {
 
 // export function toastWarn(message: string) {
 // 	toast.warn(message, { position: position })
+// }
+
+// export function toastSuccess({ message }: { message: string | string[] }) {
+// 	const messages = Array.isArray(message) ? message : [message]
+
+// 	messages.forEach((msg) => {
+// 		toast.success(<ToastContent title="Success!" message={msg} />, {
+// 			position: position,
+// 		})
+// 	})
 // }

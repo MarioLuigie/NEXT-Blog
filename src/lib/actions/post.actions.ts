@@ -8,6 +8,10 @@ export async function createPost(data: CreatePostFieldsType) {
 		return { success: true, data }
 		throw new Error()
 	} catch (err) {
-		return { success: false, error: { message: 'Post has not been added' } }
+		return {
+			success: false,
+			data: { title: null, article: null },
+			error: { message: 'Post has not been added' },
+		}
 	}
 }

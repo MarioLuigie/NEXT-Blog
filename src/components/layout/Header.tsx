@@ -21,12 +21,15 @@ export default async function Header() {
 			</Link>
 			<Nav />
 			{!(await isAuthenticated()) ? (
-				<LoginLink>Sign in</LoginLink>
+				<div className="flex-center gap-3">
+					<LoginLink>Sign in</LoginLink>
+					<div className='flex-center bg-black px-3 py-2 text-white rounded-md'>
+						<RegisterLink>Sign up</RegisterLink>
+					</div>
+				</div>
 			) : (
 				<LogoutLink>Log out</LogoutLink>
 			)}
-				<LogoutLink>Log out</LogoutLink>
-
 		</header>
 	)
 }
@@ -39,10 +42,9 @@ export default async function Header() {
 // import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 // import { toastSuccess } from '@/lib/utils/toasts';
 
-
 // export default async function Header() {
 //   const { isAuthenticated, logout } = useKindeAuth();
-  
+
 //   const handleLogout = async () => {
 //     await logout();
 //     toastSuccess({ message: 'Logged out successfully' });
@@ -62,4 +64,3 @@ export default async function Header() {
 //     </header>
 //   );
 // }
-
