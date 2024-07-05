@@ -1,13 +1,18 @@
 import { withAuth } from '@kinde-oss/kinde-auth-nextjs/middleware'
-import { redirect } from 'next/navigation';
 import { NextRequest } from 'next/server'
 
 export default function middleware(req: NextRequest) {
 	return withAuth(req)
 }
 export const config = {
-	matcher: ['/create-post'],//dopasowywacz, wzorzec ścieżki
+	matcher: ['/create-post'],//dopasowywacz, wzorzec ścieżki routy chronione
 }
+
+
+
+
+
+
 
 // import { withAuth } from '@kinde-oss/kinde-auth-nextjs/middleware';
 // import { RedirectType, redirect } from 'next/navigation';
