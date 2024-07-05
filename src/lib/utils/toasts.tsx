@@ -41,14 +41,26 @@ export function toastSuccess(data: { [key: string]: string }) {
 	})
 }
 
-export function toastError(data: { [key: string]: string }) {
-	const messages = Object.values(data)
+export function toastError(
+	data: { [key: string]: string } | string | string[]
+) {
+	let messages
 
-	messages.forEach((msg) => {
-		toast.error(<ToastContent title="Error!" message={msg} />, {
-			...config,
+	if (typeof data === 'string') {
+		messages = [data]
+	} else if (Array.isArray(data)) {
+		messages = data
+	} else if (Object.keys(data).length > 0) {
+		messages = Object.values(data)
+	}
+
+	if (messages) {
+		messages.forEach((msg) => {
+			toast.error(<ToastContent title="Error!" message={msg} />, {
+				...config,
+			})
 		})
-	})
+	}
 }
 
 export function toastWarn(data: { message: string }) {

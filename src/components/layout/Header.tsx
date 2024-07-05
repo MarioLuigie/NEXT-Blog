@@ -13,7 +13,12 @@ import {
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 
 export default async function Header() {
-	const { isAuthenticated } = getKindeServerSession()
+	const { isAuthenticated, getUser } = getKindeServerSession()
+
+	const user = await getUser()
+
+	console.log("USER:", user)
+
 	return (
 		<header className="bg-zinc-100 shadow-lg p-8 z-40 flex-between h-[140px] sticky top-0 left-0 w-full">
 			<Link href={paths.HOME}>
@@ -28,7 +33,13 @@ export default async function Header() {
 					</div>
 				</div>
 			) : (
-				<LogoutLink>Log out</LogoutLink>
+				<div className='flex-center gap-5'>
+					<div className='flex-center gap-1'>
+					<p>{user?.given_name}</p>
+					<p>{user?.family_name}</p>
+					</div>
+					<LogoutLink className='font-bold'>Log out</LogoutLink>
+				</div>
 			)}
 		</header>
 	)
