@@ -6,8 +6,9 @@ export default async function CreatePost() {
 	const { isAuthenticated } = getKindeServerSession()
 
 	if (!(await isAuthenticated())) {
-		redirect('http://localhost:3000/api/auth/login?post_login_redirect_url=http://localhost:3000/create-post')
-		// redirect('/api/auth/login?post_login_redirect_url=/create-post')
+		redirect(
+			'http://localhost:3000/api/auth/login?post_login_redirect_url=http://localhost:3000/create-post'
+		)
 	}
 
 	return (
