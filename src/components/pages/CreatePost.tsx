@@ -1,15 +1,15 @@
 import CreatePostForm from '@/components/forms/CreatePostForm'
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
-import { redirect } from 'next/navigation'
+// import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
+// import { redirect } from 'next/navigation'
 
 export default async function CreatePost() {
-	const { isAuthenticated } = getKindeServerSession()
+	// const { isAuthenticated } = getKindeServerSession()
 
-	if (!(await isAuthenticated())) {
-		redirect(
-			'http://localhost:3000/api/auth/login?post_login_redirect_url=http://localhost:3000/create-post'
-		)
-	}
+	// if (!(await isAuthenticated())) {
+	// 	redirect(
+	// 		'http://localhost:3000/api/auth/login?post_login_redirect_url=http://localhost:3000/create-post'
+	// 	)
+	// }
 
 	return (
 		<div className="grow flex-center">
