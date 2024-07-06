@@ -5,7 +5,7 @@ let isConnected = false
 export const connectToDB = async () => {
   mongoose.set('strictQuery', true)
 
-  console.log("CONNECT TO DB FUNCTION");
+  console.log("ARW CONNECT TO DB FUNCTION");
   console.log(process.env.MONGODB_URI);
 
   if (isConnected) {
@@ -14,13 +14,13 @@ export const connectToDB = async () => {
   }
 
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      dbName: 'promptify' 
+    await mongoose.connect(process.env.MONGODB_URI as string, {
+      dbName: 'cinexplore' 
     })
 
     isConnected = true
 
-    console.log('MongoDB connected', isConnected)
+    console.log('ARW MongoDB connected', isConnected)
 
   } catch (err) {
     console.log('Something went wrong with mongodb connecting!', err)
