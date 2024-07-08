@@ -1,3 +1,4 @@
+//POST
 export interface IReactions {
 	[key: string]: number
 }
@@ -10,4 +11,21 @@ export interface IPost {
 	reactions: IReactions
 	views: number
 	userId: number
+}
+
+//USER
+export type CreateUserData = {
+	kindeId: string
+	username: string
+	email: string
+	firstName: string
+	lastName: string
+	image: string
+}
+
+export type UpdateUserData = {
+	username: string
+	firstName: string
+	lastName: string
+	image: string
 }

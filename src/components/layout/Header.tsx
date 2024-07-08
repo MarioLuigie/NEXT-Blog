@@ -17,7 +17,7 @@ export default async function Header() {
 
 	const user = await getUser()
 
-	console.log("USER:", user)
+	console.log("***USER:", user)
 	
 	return (
 		<header className="bg-zinc-100 shadow-lg p-8 z-40 flex-between h-[140px] sticky top-0 left-0 w-full">

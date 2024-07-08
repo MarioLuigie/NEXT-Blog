@@ -19,10 +19,7 @@ const UserSchema = new Schema({
 	username: {
 		type: String,
 		required: [true, 'User name is required.'],
-		match: [
-			/^(?=.{2,20}$)[a-zA-Z0-9._]+$/,
-			'Username invalid, it should contain 2-20 alphanumeric letters and be unique!',
-		],
+		unique: [true, 'Username already exists!'],
 	},
 	email: {
 		type: String,
@@ -40,6 +37,6 @@ const UserSchema = new Schema({
 	},
 })
 
-const User = models.User || model('User', UserSchema)
+const UserModel = models.User || model('User', UserSchema)
 
-export default User
+export default UserModel

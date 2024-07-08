@@ -1,5 +1,5 @@
 import { Schema, models, model } from 'mongoose'
-import User, { IUser } from '@/lib/models/user.model'
+import UserModel, { IUser } from '@/lib/models/user.model'
 
 export interface IPost {
 	title: string
@@ -19,10 +19,10 @@ const PostSchema = new Schema({
 	creator: {
 		type: Schema.Types.ObjectId,
 		required: true,
-		ref: User,
+		ref: UserModel,//?? maybe 'User' ?
 	},
 })
 
-const Post = models.Post || model('Post', PostSchema)
+const PostModel = models.Post || model('Post', PostSchema)
 
-export default Post
+export default PostModel
