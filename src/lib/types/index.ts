@@ -16,7 +16,7 @@ export interface IPost {
 //USER
 export type CreateUserData = {
 	kindeId: string
-	username: string
+	username: string 
 	email: string
 	firstName: string
 	lastName: string
@@ -24,7 +24,7 @@ export type CreateUserData = {
 }
 
 export type UpdateUserData = {
-	username: string
+	username: string 
 	firstName: string
 	lastName: string
 	image: string

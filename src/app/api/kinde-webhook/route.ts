@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import jwksClient from 'jwks-rsa'
 import jwt, { Jwt, JwtPayload } from 'jsonwebtoken'
+import { createUser } from '@/lib/actions/user.actions'
 
 const client = jwksClient({
 	jwksUri: `${process.env.KINDE_ISSUER_URL}/.well-known/jwks.json`,
@@ -11,7 +12,7 @@ export async function POST(req: Request) {
 		// Get the token from the request
 		const token = await req.text()
 
-    console.log('***TOKEN:', token)
+		console.log('***TOKEN:', token)
 
 		// Decode the token
 		const decodedToken = jwt.decode(token, { complete: true }) as Jwt | null
@@ -21,36 +22,60 @@ export async function POST(req: Request) {
 		const { header } = decodedToken
 		const { kid } = header
 
-    console.log('***DECODEDTOKEN:', decodedToken)
+		console.log('***DECODEDTOKEN:', decodedToken)
 
 		// Verify the token
 		const key = await client.getSigningKey(kid)
 		const signingKey = key.getPublicKey()
-		const event = jwt.verify(token, signingKey) as JwtPayload // await?
+		const payload = jwt.verify(token, signingKey) as JwtPayload // await?
+
+		console.log('***PAYLOAD:', payload)
 
 		// Handle various events
-    switch (event?.type) {
-      case "user.created":
-        // handle user created event
-        // e.g add user to database with event.data
-        console.log(event.data);
-        break;
-      case "user.updated":
-        // handle user updated event
-        // e.g update database with event.data
-        console.log(event.data);
-        break;
-        case "user.deleted":
-          // handle user updated event
-          // e.g update database with event.data
-          console.log(event.data);
-          break;
-      default:
-        // other events that we don't handle
-        break;
-    }
+		switch (payload?.type) {
+			case 'user.created':
+				const {
+					user: { id, email, username, first_name, last_name },
+				} = payload.data
 
+				const user = {
+					kindeId: id,
+					email,
+					username: email,
+					firstName: first_name,
+					lastName: last_name,
+					image: 'https://example.com',
+				}
 
+				console.log('***USERFROMKINDE:', user)
+
+				const createdUser = await createUser(user)
+
+				// if (createdUser) {
+				// 	// Przykład aktualizacji metadanych w Kinde (jeśli to możliwe)
+				// 	await kinderClient.users.updateUserMetadata(kinderUserId, {
+				// 		localUserId: newUser._id,
+				// 	})
+				// }
+
+				// handle user created event
+				// e.g add user to database with event.data
+				console.log(payload.data)
+				break
+			case 'user.updated':
+				// handle user updated event
+				// e.g update database with event.data
+				console.log(payload.data)
+				break
+			case 'user.deleted':
+				// handle user updated event
+				// e.g update database with event.data
+				console.log(payload.data)
+				break
+			default:
+				// other events that we don't handle
+				break
+		}
 	} catch (err) {
 		if (err instanceof Error) {
 			console.error(err.message)
@@ -161,7 +186,6 @@ export async function POST(req: Request) {
 
 // Ilekroć w Kinde wystąpi jakieś zdarzenie, tą trasą wysyłane jest żądanie POST do określonego punktu końcowego, dzięki czemu Twój projekt może zareagować na zdarzenie. Na przykład odświeżenie tokena lub aktualizacja danych w bazie danych.
 
-
 // ***TOKEN: eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwOjIxOjI4OjM4OjY2OmRkOjBhOmU2OmJmOjgyOmVhOjQ4OjQ2OmU5OmI2OmQyIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7InVzZXIiOnsiZW1haWwiOiJrbGF1ZGlhLmsxOTkzQGdtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJLIiwiaWQiOiJrcF84NDU4MjI5NDhmMTQ0Y2Q5YWMyM2VlOWNhODkyZDBlNCIsImlzX3Bhc3N3b3JkX3Jlc2V0X3JlcXVlc3RlZCI6ZmFsc2UsImlzX3N1c3BlbmRlZCI6ZmFsc2UsImxhc3RfbmFtZSI6IksiLCJvcmdhbml6YXRpb25zIjpbeyJjb2RlIjoib3JnXzBkNzZlNTEzNTdiIiwicGVybWlzc2lvbnMiOm51bGwsInJvbGVzIjpudWxsfV0sInBob25lIjpudWxsLCJ1c2VybmFtZSI6bnVsbH19LCJldmVudF9pZCI6ImV2ZW50XzAxOTA5MzJkNzU5MmM2OGJkYTUwZDYyYjJmZmE4Y2JiIiwic291cmNlIjoidXNlciIsInRpbWVzdGFtcCI6IjIwMjQtMDctMDlUMDI6Mjk6MDguMjQyOTY5KzEwOjAwIiwidHlwZSI6InVzZXIuY3JlYXRlZCJ9.nDQ7zSI4Qr4RY0Nq02JwMQWKS3kuko8gIO939Fz7gOmelAjC6FbW72FxP84JY-JedVZuEUHnqRbsYwef7HaiLkSfueD6fhaBwhbyGC7Ohromo7bM2X-V61QxrdHfwy0GnVAvw3WPQp_taSb8RDjElsWGi59jiKsKihjq_tHorK-VLRW_upKoQsPZyac-9V43fASWSjZgbJ2S8zpCyzHYYIdHUnBRrJ_1Og6GhDVW99ovphYN1K5PTMm3qG4XobwenCZ5MKNMkGn3HLMfL90o1LDer2RNs8eSX0b7Y742i4kJQYdMlxuQbZLiVvGgOQG6wLflwtBqrf7FY1vK3aESNA
 
 // ***DECODEDTOKEN: {
@@ -180,6 +204,26 @@ export async function POST(req: Request) {
 //   signature: 'nDQ7zSI4Qr4RY0Nq02JwMQWKS3kuko8gIO939Fz7gOmelAjC6FbW72FxP84JY-JedVZuEUHnqRbsYwef7HaiLkSfueD6fhaBwhbyGC7Ohromo7bM2X-V61QxrdHfwy0GnVAvw3WPQp_taSb8RDjElsWGi59jiKsKihjq_tHorK-VLRW_upKoQsPZyac-9V43fASWSjZgbJ2S8zpCyzHYYIdHUnBRrJ_1Og6GhDVW99ovphYN1K5PTMm3qG4XobwenCZ5MKNMkGn3HLMfL90o1LDer2RNs8eSX0b7Y742i4kJQYdMlxuQbZLiVvGgOQG6wLflwtBqrf7FY1vK3aESNA'
 // }
 
+//PAYLOAD
+// ***PAYLOAD: {
+//   data: {
+//     user: {
+//       email: 'cinematicaux@gmail.com',
+//       first_name: 'Mariusz',
+//       id: 'kp_7b3e33af9aa5453c823f47b8bd3a0078',
+//       is_password_reset_requested: false,
+//       is_suspended: false,
+//       last_name: 'Łotocki',
+//       organizations: [Array],
+//       phone: null,
+//       username: null
+//     }
+//   },
+//   event_id: 'event_0190936b524ebe2d0ef1796f60207f8b',
+//   source: 'user',
+//   timestamp: '2024-07-09T03:36:42.445563+10:00',
+//   type: 'user.created'
+// }
 
 // CASE USER.CREATED PRZYKŁAD DLA EVENT.DATA czyli obiekt usera zwrócony przez webhook
 // case "user.created": event.data

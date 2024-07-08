@@ -1,5 +1,6 @@
 //modules
 import Link from 'next/link'
+import Image from 'next/image'
 //components
 import Logo from '@/components/content/Logo'
 import Nav from '@/components/layout/Nav'
@@ -17,8 +18,8 @@ export default async function Header() {
 
 	const user = await getUser()
 
-	console.log("***USER:", user)
-	
+	console.log('***USER:', user)
+
 	return (
 		<header className="bg-zinc-100 shadow-lg p-8 z-40 flex-between h-[140px] sticky top-0 left-0 w-full">
 			<Link href={paths.HOME}>
@@ -28,17 +29,28 @@ export default async function Header() {
 			{!(await isAuthenticated()) ? (
 				<div className="flex-center gap-3">
 					<LoginLink>Sign in</LoginLink>
-					<div className='flex-center bg-black px-3 py-2 text-white rounded-md'>
+					<div className="flex-center bg-black px-3 py-2 text-white rounded-md">
 						<RegisterLink>Sign up</RegisterLink>
 					</div>
 				</div>
 			) : (
-				<div className='flex-center gap-5'>
-					<div className='flex-center gap-1'>
-					<p>{user?.given_name}</p>
-					<p>{user?.family_name}</p>
+				<div className="flex-center gap-5">
+					<div className="flex-center gap-3">
+						{user?.picture && (
+							<Image
+								src={user?.picture}
+								alt="Avatar"
+								width={45}
+								height={45}
+								className="rounded-full"
+							/>
+						)}
+						<div className="flex-center gap-1">
+							<p>{user?.given_name}</p>
+							<p>{user?.family_name}</p>
+						</div>
 					</div>
-					<LogoutLink className='font-bold'>Log out</LogoutLink>
+					<LogoutLink className="font-bold">Log out</LogoutLink>
 				</div>
 			)}
 		</header>
