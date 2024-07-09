@@ -3,11 +3,11 @@ import { Schema, models, model } from 'mongoose'
 export interface IUser {
 	_id: string
 	kindeId: string
-	username: string
+	username: string | null
 	email: string
 	firstName?: string
 	lastName?: string
-	image?: string
+	picture?: string
 }
 
 const UserSchema = new Schema({
@@ -18,13 +18,15 @@ const UserSchema = new Schema({
 	},
 	username: {
 		type: String,
-		required: [true, 'User name is required.'],
-		unique: [true, 'Username already exists!'],
+		default: null,
+		unique: true,
+		sparse: true,//tworzy rzadki indeks, który umożliwia przechowywanie wielu dokumentów z username ustawionym na null
+		required: false,
 	},
 	email: {
 		type: String,
 		required: [true, 'Email is required.'],
-		unique: [true, 'Email already exists!'],
+		unique: true,
 	},
   firstName: {
 		type: String,
@@ -32,7 +34,7 @@ const UserSchema = new Schema({
 	lastName: {
 		type: String,
 	},
-	image: {
+	picture: {
 		type: String,
 	},
 })

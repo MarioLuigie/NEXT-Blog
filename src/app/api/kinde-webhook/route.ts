@@ -2,16 +2,22 @@ import { NextResponse } from 'next/server'
 import jwksClient from 'jwks-rsa'
 import jwt, { Jwt, JwtPayload } from 'jsonwebtoken'
 import { createUser } from '@/lib/actions/user.actions'
+import { getAuthToken, getUserFromKinde } from '@/lib/utils/server'
 
 const client = jwksClient({
 	jwksUri: `${process.env.KINDE_ISSUER_URL}/.well-known/jwks.json`,
 })
 
+
+
 export async function POST(req: Request) {
 	try {
+		// Get access-token
+		const accessToken = await getAuthToken()
+		console.log('***ACCESS-TOKEN:', accessToken)
+
 		// Get the token from the request
 		const token = await req.text()
-
 		console.log('***TOKEN:', token)
 
 		// Decode the token
@@ -21,14 +27,12 @@ export async function POST(req: Request) {
 		}
 		const { header } = decodedToken
 		const { kid } = header
-
 		console.log('***DECODEDTOKEN:', decodedToken)
 
 		// Verify the token
 		const key = await client.getSigningKey(kid)
 		const signingKey = key.getPublicKey()
 		const payload = jwt.verify(token, signingKey) as JwtPayload // await?
-
 		console.log('***PAYLOAD:', payload)
 
 		// Handle various events
@@ -38,15 +42,16 @@ export async function POST(req: Request) {
 					user: { id, email, username, first_name, last_name },
 				} = payload.data
 
+				const { picture } = await getUserFromKinde(accessToken, id)
+
 				const user = {
 					kindeId: id,
 					email,
-					username: email,
+					username: username,
 					firstName: first_name,
 					lastName: last_name,
-					image: 'https://example.com',
+					picture,
 				}
-
 				console.log('***USERFROMKINDE:', user)
 
 				const createdUser = await createUser(user)
@@ -57,6 +62,16 @@ export async function POST(req: Request) {
 				// 		localUserId: newUser._id,
 				// 	})
 				// }
+
+        // const client = await createKindeManagementAPIClient();
+
+        // client.usersApi.updateUser({
+        //   id: ctx.userId,
+        //   updateUserRequest: {
+        //     familyName: input.family_name,
+        //     givenName: input.given_name,
+        //   },
+        // });
 
 				// handle user created event
 				// e.g add user to database with event.data
