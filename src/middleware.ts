@@ -10,14 +10,14 @@ export default withAuth(
 	async function middleware(req: IKindeRequest) {
 		console.log('***KINDE AUTH REQUEST', req.kindeAuth)
 	},
-	{
-		isReturnToCurrentPage: true,
-		loginPage: '/posts',//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-		isAuthorized: ({ token }: { token: any}) => {
-			// The user will be considered authorized if they have the permission 'eat:chips'
-			return token.permissions.includes('eat:chips')
-		},
-	}
+	// {
+	// 	isReturnToCurrentPage: true,
+	// 	loginPage: '/posts',//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+	// 	isAuthorized: ({ token }: { token: any}) => {
+	// 		// The user will be considered authorized if they have the permission 'eat:chips'
+	// 		return token.permissions.includes('eat:chips')
+	// 	},
+	// }
 )
 
 export const config = {

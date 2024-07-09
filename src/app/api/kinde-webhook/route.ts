@@ -47,7 +47,7 @@ export async function POST(req: Request) {
 				const user = {
 					kindeId: id,
 					email,
-					username: username,
+					username: email,
 					firstName: first_name,
 					lastName: last_name,
 					picture,
@@ -255,3 +255,9 @@ export async function POST(req: Request) {
 //     username: null
 //   }
 // }
+
+
+// E11000 duplicate key error collection: cinexplore.users index: username_1 dup key: { username: null }
+// Dokładnie tak, nie możesz wstawić do MongoDB obiektu użytkownika z polem username ustawionym na null, jeśli masz indeks unikalny na polu username. Indeks unikalny wymaga, aby wszystkie wartości w indeksowanym polu były unikalne i nie mogą być null (ponieważ null traktowany jest jak wartość).
+// Podsumowując, problem polega na tym, że próbujesz wstawić dokument z username ustawionym na null, co narusza unikalność indeksu. Musisz zapewnić, że username jest zawsze unikalne i nie puste przed wstawieniem danych do MongoDB.
+// Błąd, który otrzymujesz, wskazuje, że próbujesz wstawić dokument do kolekcji users w bazie danych MongoDB, ale istnieje już dokument z tym samym indeksem username. Konkretnie, wartość username jest null, co oznacza, że próbujesz wstawić drugi dokument z username ustawionym na null, co narusza unikalność indeksu.

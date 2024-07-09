@@ -53,6 +53,7 @@ export default async function Header() {
 					<LogoutLink className="font-bold">Log out</LogoutLink>
 				</div>
 			)}
+			{/* <LogoutLink className="font-bold">Log out</LogoutLink> */}
 		</header>
 	)
 }
