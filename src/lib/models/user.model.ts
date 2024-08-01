@@ -3,7 +3,7 @@ import { Schema, models, model } from 'mongoose'
 export interface IUser {
 	_id: string
 	kindeId: string
-	username: string | null
+	username: string
 	email: string
 	firstName?: string
 	lastName?: string
@@ -18,9 +18,9 @@ const UserSchema = new Schema({
 	},
 	username: {
 		type: String,
-		default: null,
+		// default: null,
 		unique: true,
-		sparse: true,//tworzy rzadki indeks, który umożliwia przechowywanie wielu dokumentów z username ustawionym na null
+		// sparse: true,//tworzy rzadki indeks, który umożliwia przechowywanie wielu dokumentów z username ustawionym na null
 		required: false,
 	},
 	email: {

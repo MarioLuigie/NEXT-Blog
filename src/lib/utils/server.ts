@@ -1,6 +1,6 @@
 'use server'
 
-export async function getAuthToken() {
+export async function getKindeAccessToken() {
 	try {
 		const params = new URLSearchParams()
 		params.append('client_id', process.env.KINDE_CLIENT_ID || '')

@@ -21,7 +21,7 @@ export default withAuth(
 )
 
 export const config = {
-	matcher: ['/create-post'],
+	matcher: ['/create-post', '/posts'],
 }
 
 //req.kindeAuth zwraca obiekt z polami token i user {token:{}, user: {}}

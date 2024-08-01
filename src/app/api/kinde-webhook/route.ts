@@ -2,18 +2,16 @@ import { NextResponse } from 'next/server'
 import jwksClient from 'jwks-rsa'
 import jwt, { Jwt, JwtPayload } from 'jsonwebtoken'
 import { createUser } from '@/lib/actions/user.actions'
-import { getAuthToken, getUserFromKinde } from '@/lib/utils/server'
+import { getKindeAccessToken, getUserFromKinde } from '@/lib/utils/server'
 
 const client = jwksClient({
 	jwksUri: `${process.env.KINDE_ISSUER_URL}/.well-known/jwks.json`,
 })
 
-
-
 export async function POST(req: Request) {
 	try {
 		// Get access-token
-		const accessToken = await getAuthToken()
+		const accessToken = await getKindeAccessToken()
 		console.log('***ACCESS-TOKEN:', accessToken)
 
 		// Get the token from the request
@@ -47,7 +45,7 @@ export async function POST(req: Request) {
 				const user = {
 					kindeId: id,
 					email,
-					username: email,
+					username: username === null ? email : username,
 					firstName: first_name,
 					lastName: last_name,
 					picture,
@@ -63,15 +61,15 @@ export async function POST(req: Request) {
 				// 	})
 				// }
 
-        // const client = await createKindeManagementAPIClient();
+				// const client = await createKindeManagementAPIClient();
 
-        // client.usersApi.updateUser({
-        //   id: ctx.userId,
-        //   updateUserRequest: {
-        //     familyName: input.family_name,
-        //     givenName: input.given_name,
-        //   },
-        // });
+				// client.usersApi.updateUser({
+				//   id: ctx.userId,
+				//   updateUserRequest: {
+				//     familyName: input.family_name,
+				//     givenName: input.given_name,
+				//   },
+				// });
 
 				// handle user created event
 				// e.g add user to database with event.data
@@ -255,7 +253,6 @@ export async function POST(req: Request) {
 //     username: null
 //   }
 // }
-
 
 // E11000 duplicate key error collection: cinexplore.users index: username_1 dup key: { username: null }
 // Dokładnie tak, nie możesz wstawić do MongoDB obiektu użytkownika z polem username ustawionym na null, jeśli masz indeks unikalny na polu username. Indeks unikalny wymaga, aby wszystkie wartości w indeksowanym polu były unikalne i nie mogą być null (ponieważ null traktowany jest jak wartość).
