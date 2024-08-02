@@ -15,6 +15,7 @@ import {
 interface IData {
 	title: string | null
 	article: string | null
+	creator: any
 }
 
 export const handleResetForm =
@@ -36,6 +37,7 @@ export const handleCreatePost = async (data: CreatePostFieldsType) => {
 			toastError(result.error)
 		} else {
 			toastSuccess({ message: 'Post added with successfully!' })
+			console.log("POST DATA:", result)
 		}
 
 		// toastInfo({ message: 'Post info' })

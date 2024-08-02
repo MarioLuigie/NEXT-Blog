@@ -1,5 +1,5 @@
 import { Schema, models, model } from 'mongoose'
-import UserModel, { IUser } from '@/lib/models/user.model'
+import { IUser } from '@/lib/models/user.model'
 
 export interface IPost {
 	title: string
@@ -19,7 +19,7 @@ const PostSchema = new Schema({
 	creator: {
 		type: Schema.Types.ObjectId,
 		required: true,
-		ref: UserModel,//?? maybe 'User' ?
+		ref: 'User'
 	},
 })
 

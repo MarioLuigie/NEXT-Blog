@@ -21,7 +21,7 @@ export default async function Header() {
 	console.log('***USER:', user)
 
 	return (
-		<header className="bg-zinc-100 shadow-lg p-8 z-40 flex-between h-[140px] sticky top-0 left-0 w-full">
+		<header className="bg-zinc-100 border-b-2 p-8 z-40 flex-between h-[140px] sticky top-0 left-0 w-full">
 			<Link href={paths.HOME}>
 				<Logo />
 			</Link>
@@ -36,7 +36,7 @@ export default async function Header() {
 			) : (
 				<div className="flex-center gap-5">
 					<div className="flex-center gap-3">
-						{user?.picture && (
+						{user?.picture ? (
 							<Image
 								src={user?.picture}
 								alt="Avatar"
@@ -44,6 +44,10 @@ export default async function Header() {
 								height={45}
 								className="rounded-full"
 							/>
+						) : (
+							<div className="w-[40px] aspect-square flex-center rounded-full bg-zinc-200 text-zinc-800 text-md">
+								{user?.given_name?.charAt(0)}
+							</div>
 						)}
 						<div className="flex-center gap-1">
 							<p>{user?.given_name}</p>
