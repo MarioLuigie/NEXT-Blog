@@ -5,6 +5,7 @@ export interface IPost {
 	title: string
 	article: string
 	creator: IUser
+	id: string
 }
 
 const PostSchema = new Schema({

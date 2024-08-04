@@ -1,16 +1,24 @@
 //POST
-export interface IReactions {
-	[key: string]: number
-}
+// export interface IReactions {
+// 	[key: string]: number
+// }
 
+// export interface IPost {
+// 	id: number
+// 	title: string
+// 	body: string
+// 	tags: string[]
+// 	reactions: IReactions
+// 	views: number
+// 	userId: number
+// }
+
+//POST
 export interface IPost {
-	id: number
+	_id: string
 	title: string
-	body: string
-	tags: string[]
-	reactions: IReactions
-	views: number
-	userId: number
+	article: string
+	creator: any
 }
 
 //USER
