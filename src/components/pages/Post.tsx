@@ -1,4 +1,6 @@
 import { getPost } from '@/lib/actions/post.actions'
+import DropDownMenu from '@/components/shared/DropDownMenu'
+import PostSignature from '@/components/content/PostSignature'
 
 export default async function Post({ params }: { params: { post: string } }) {
 	const { data } = await getPost(params.post)
@@ -7,7 +9,13 @@ export default async function Post({ params }: { params: { post: string } }) {
 		<div className="flex flex-wrap shadow-2xl grow">
 			<div className="min-w-[300px] min-h-[300px] w-[100%] sm:w-1/2 lg:w-2/3 bg-zinc-200 grow"></div>
 			<div className="flex flex-col w-[100%] sm:w-1/2 lg:w-1/3 grow p-10">
-				<h2 className="text-4xl text-zinc-900 font-bold">{data.title}</h2>
+				<div className="flex flex-between">
+					<PostSignature creator={data.creator} />
+					<DropDownMenu />
+				</div>
+				<h2 className="text-4xl text-zinc-900 font-bold mt-8">
+					{data.title}
+				</h2>
 				<p className="pt-10 text-justify">{data.article}</p>
 			</div>
 		</div>

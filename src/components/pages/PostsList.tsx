@@ -15,6 +15,21 @@ export default async function PostsList() {
 	)
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import PostsListItem from '@/components/content/PostsListItem'
 // import { IPost } from '@/lib/types'
 // import { getPosts } from '@/lib/actions/post.actions'

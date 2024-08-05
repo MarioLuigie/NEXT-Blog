@@ -7,7 +7,7 @@ import PostModel from '../models/post.model'
 import UserModel from '@/lib/models/user.model'
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 
-//CREATE
+// CREATE
 export async function createPost(data: CreatePostFieldsType) {
 	const { getUser } = getKindeServerSession()
 
@@ -43,7 +43,7 @@ export async function createPost(data: CreatePostFieldsType) {
 				id: simplePost._id,
 			},
 		}
-		throw new Error()
+		// throw new Error()
 	} catch (err) {
 		return {
 			success: false,
@@ -53,10 +53,10 @@ export async function createPost(data: CreatePostFieldsType) {
 	}
 }
 
+// GET
 export async function getPosts() {
 	try {
 		await connectToDB()
-
 		// Spłaszczam dokumenty mongoose do prostych js objects, moge to zrobić, bo nie modyfikuje ich i korzystam z trasy GET a nie PUT, PATCH, POST
 		// Zyskuje mniejsza wage elementów
 		const posts = await PostModel.find().populate('creator').lean()
@@ -101,5 +101,14 @@ export async function getPost(id: string) {
 			data: {},
 			error: { message: 'An error occurred' },
 		}
+	}
+}
+
+// DELETE
+export async function deletePost() {
+	try {
+		
+	} catch (err) {
+		
 	}
 }
