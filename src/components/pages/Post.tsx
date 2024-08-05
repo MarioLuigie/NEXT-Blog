@@ -8,7 +8,7 @@ export default async function Post({ params }: { params: { post: string } }) {
 	return (
 		<div className="flex flex-wrap shadow-2xl grow">
 			<div className="min-w-[300px] min-h-[300px] w-[100%] sm:w-1/2 lg:w-2/3 bg-zinc-200 grow"></div>
-			<div className="flex flex-col w-[100%] sm:w-1/2 lg:w-1/3 grow p-10">
+			<div className="flex flex-col w-[100%] sm:w-1/2 lg:w-1/3 grow p-10 bg-zinc-50">
 				<div className="flex flex-between">
 					<PostSignature creator={data.creator} />
 					<DropDownMenu />

@@ -21,7 +21,7 @@ export default async function Header() {
 	console.log('***USER:', user)
 
 	return (
-		<header className="bg-zinc-100 border-b-2 p-8 z-40 flex-between h-[140px] sticky top-0 left-0 w-full">
+		<header className="bg-zinc-50 border-b-2 p-8 z-40 flex-between h-[140px] sticky top-0 left-0 w-full">
 			<Link href={paths.HOME}>
 				<Logo />
 			</Link>
