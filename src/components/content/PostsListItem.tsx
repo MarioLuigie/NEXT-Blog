@@ -7,11 +7,10 @@ import { IPost } from '@/lib/types'
 
 import DropDownMenu from '@/components/shared/DropDownMenu'
 import PostSignature from '@/components/content/PostSignature'
-import { handleDeletePost } from '@/lib/handlers/post.handlers'
+import { handleDeletePost, handleEditPost } from '@/lib/handlers/post.handlers'
 
 export default function PostsListItem({ post }: { post: IPost }) {
-
-	console.log("***", handleDeletePost(post._id))
+	// console.log('***', handleDeletePost(post._id))
 
 	return (
 		<li className="flex flex-col gap-6 w-full shadow-lg p-10 rounded-md bg-zinc-50">
@@ -19,6 +18,7 @@ export default function PostsListItem({ post }: { post: IPost }) {
 				<PostSignature creator={post.creator} />
 				<DropDownMenu
 					items={[
+						{ label: 'Edit', onClick: handleEditPost(post._id) },
 						{ label: 'Delete', onClick: handleDeletePost(post._id) },
 					]}
 				/>

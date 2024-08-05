@@ -48,8 +48,8 @@ export const handleCreatePost = async (data: CreatePostFieldsType) => {
 	}
 }
 
-export const handleEditPost = () => {
-	console.log('Post edited')
+export const handleEditPost = (id: string) => () => {
+	console.log('Post edited', id)
 }
 
 export const handleDeletePost = (id: string) => () => {
