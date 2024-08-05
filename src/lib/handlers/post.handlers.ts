@@ -38,7 +38,7 @@ export const handleCreatePost = async (data: CreatePostFieldsType) => {
 			toastError(result.error)
 		} else {
 			toastSuccess({ message: 'Post added with successfully!' })
-			console.log("POST DATA result:", result)
+			console.log('POST DATA result:', result)
 		}
 
 		// toastInfo({ message: 'Post info' })
@@ -46,4 +46,20 @@ export const handleCreatePost = async (data: CreatePostFieldsType) => {
 	} catch (err) {
 		console.error(err)
 	}
+}
+
+export const handleEditPost = () => {
+	console.log('Post edited')
+}
+
+export const handleDeletePost = (id: string) => () => {
+	console.log('Post deleted', id)
+}
+
+export const handleHidePost = () => {
+	console.log('Post hidden')
+}
+
+export const handleReportPost = () => {
+	console.log('Post reported')
 }
