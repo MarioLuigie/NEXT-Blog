@@ -29,7 +29,7 @@ export async function createPost(data: CreatePostFieldsType) {
 		console.log('POPULATED POST:', populatedPost)
 
 		// Konwersja na prosty obiekt JSON, pozbywając się nietypowych struktur
-		//Uzyj deepClone albo NextResponse
+		//Uzyj naszego deepClone albo NextResponse
 		const simplePost = JSON.parse(JSON.stringify(populatedPost))
 
 		revalidatePath('/posts')
