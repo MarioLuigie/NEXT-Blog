@@ -1,3 +1,4 @@
+'use client'
 import { getPost } from '@/lib/actions/post.actions'
 import PostDropDownMenu from '@/components/shared/PostDropDownMenu'
 import PostSignature from '@/components/content/PostSignature'
