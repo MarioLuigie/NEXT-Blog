@@ -16,7 +16,7 @@ interface IData {
 	title: string | null
 	article: string | null
 	creator: any | null
-	id: string | null
+	_id: string | null
 }
 
 export const handleResetForm =
