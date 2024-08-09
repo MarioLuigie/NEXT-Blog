@@ -1,13 +1,11 @@
-'use client'
 //modules
 import Link from 'next/link'
 //lib
 import { truncateText } from '@/lib/utils'
 import { IPost } from '@/lib/types'
-
-import DropDownMenu from '@/components/shared/DropDownMenu'
+//components
 import PostSignature from '@/components/content/PostSignature'
-import { handleDeletePost, handleEditPost } from '@/lib/handlers/post.handlers'
+import PostDropDownMenu from '@/components/shared/PostDropDownMenu'
 
 export default function PostsListItem({ post }: { post: IPost }) {
 	// console.log('***', handleDeletePost(post._id))
@@ -16,11 +14,8 @@ export default function PostsListItem({ post }: { post: IPost }) {
 		<li className="flex flex-col gap-6 w-full shadow-lg p-10 rounded-md bg-zinc-50">
 			<div className="flex flex-between">
 				<PostSignature creator={post.creator} />
-				<DropDownMenu
-					items={[
-						{ label: 'Edit', onClick: handleEditPost(post._id) },
-						{ label: 'Delete', onClick: handleDeletePost(post._id) },
-					]}
+				<PostDropDownMenu
+					data={post}
 				/>
 			</div>
 			<Link href={`/posts/${post._id}`}>
