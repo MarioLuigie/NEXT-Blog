@@ -40,14 +40,14 @@ export async function createPost(data: CreatePostFieldsType) {
 				title: simplePost.title,
 				article: simplePost.article,
 				creator: simplePost.creator,
-				id: simplePost._id,
+				_id: simplePost._id,
 			},
 		}
 		// throw new Error()
 	} catch (err) {
 		return {
 			success: false,
-			data: { title: null, article: null, creator: null, id: null },
+			data: { title: null, article: null, creator: null, _id: null },
 			error: { message: 'Post has not been added' },
 		}
 	}
@@ -91,7 +91,7 @@ export async function getPost(id: string) {
 				title: clonePost.title,
 				article: clonePost.article,
 				creator: clonePost.creator,
-				id: clonePost._id,
+				_id: clonePost._id,
 			},
 		}
 		
