@@ -48,7 +48,7 @@ export default function PostUpdateDialog({
 						Cancel
 					</button>
 					<button
-						className="bg-red-500 text-white px-4 py-2 rounded"
+						className="bg-emerald-600 text-white px-4 py-2 rounded"
 						onClick={() => {
 							onConfirm()
 							onClose()
