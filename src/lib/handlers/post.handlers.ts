@@ -29,9 +29,11 @@ export const handleCreatePost = async (data: CreatePostFieldsType) => {
 
 		if (result.error) {
 			toastError(result.error)
+			return result.error
 		} else {
 			toastSuccess({ message: 'Post added with successfully!' })
 			console.log('POST DATA result:', result)
+			return null
 		}
 
 		// toastInfo({ message: 'Post info' })

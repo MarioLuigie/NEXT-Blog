@@ -9,6 +9,8 @@ import FormField from '@/components/shared/FormField'
 import Button from '@/components/shared/Button'
 //handlers
 import { handleResetForm, handleCreatePost } from '@/lib/handlers/post.handlers'
+//modules
+import { useRouter } from 'next/navigation'
 
 export default function CreatePostForm() {
 	const {
@@ -21,14 +23,20 @@ export default function CreatePostForm() {
 		resolver: zodResolver(createPostSchema),
 	})
 
+	const router = useRouter()
+
 	const onSubmit: SubmitHandler<CreatePostFieldsType> = async (
 		data: CreatePostFieldsType
 	) => {
 		try {
-			await handleCreatePost(data)
+			const result = await handleCreatePost(data)
 
-			reset()
-			
+			if (!result) {
+				reset()
+				router.push('/posts')
+			} else {
+				console.error(result.message)
+			}
 		} catch (err) {
 			console.error(err)
 		}
