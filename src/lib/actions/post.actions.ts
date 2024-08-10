@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { CreatePostFieldsType } from '@/lib/types/zod'
+import { IPost } from '@/lib/types'
 import { connectToDB } from '@/lib/utils/database'
 import PostModel from '../models/post.model'
 import UserModel from '@/lib/models/user.model'
@@ -67,7 +68,6 @@ export async function getPosts() {
 			success: true,
 			data: [...postsList],
 		}
-
 	} catch (err) {
 		return {
 			success: false,
@@ -94,21 +94,44 @@ export async function getPost(id: string) {
 				_id: clonePost._id,
 			},
 		}
-		
 	} catch (err) {
 		return {
 			success: false,
-			data: {title: null, article: null, creator: null, _id: null},
+			data: { title: null, article: null, creator: null, _id: null },
 			error: { message: 'An error occurred' },
 		}
 	}
 }
 
 // DELETE
-export async function deletePost() {
+export async function deletePost(data: IPost) {
 	try {
-		
+		await connectToDB()
+
+		const deletedPost = await PostModel.findByIdAndDelete(data._id).populate(
+			'creator'
+		)
+
+		const clonePost = JSON.parse(JSON.stringify(deletedPost))
+
+		console.log('Post deleted from Data Base', clonePost)
+
+		revalidatePath('/posts')
+
+		return {
+			success: true,
+			data: {
+				title: clonePost.title,
+				article: clonePost.article,
+				creator: clonePost.creator,
+				_id: clonePost._id,
+			},
+		}
 	} catch (err) {
-		
+		return {
+			success: false,
+			data: { title: null, article: null, creator: null, _id: null },
+			error: { message: 'An error occurred' },
+		}
 	}
 }

@@ -4,7 +4,7 @@ import { UseFormReset } from 'react-hook-form'
 import { IPost } from '@/lib/types'
 import { CreatePostFieldsType } from '../types/zod'
 import { IDataResult } from '@/lib/types/results'
-import { createPost } from '@/lib/actions/post.actions'
+import { createPost, deletePost } from '@/lib/actions/post.actions'
 import {
 	toastSuccess,
 	toastError,
@@ -50,11 +50,22 @@ export const handleCreatePost = async (data: CreatePostFieldsType) => {
 }
 
 export const handleEditPost = (data: IPost) => () => {
-	console.log('Post edited', data._id)
+	console.log('Post post prepared do edit', data._id)
 }
 
-export const handleDeletePost = (data: IPost) => () => {
-	console.log('Post deleted', data._id)
+export const handleDeletePost = async (data: IPost) => {
+	try {
+		const result: IDataResult<IData> = await deletePost(data)
+
+		if (result.error) {
+			toastError(result.error)
+		} else {
+			toastSuccess({ message: 'Post deleted with successfully!' })
+		}
+	} catch (err) {
+		console.error(err)
+	}
+	console.log('Post prepared to delete', data._id)
 }
 
 export const handleHidePost = () => {
