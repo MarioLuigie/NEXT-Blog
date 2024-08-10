@@ -12,14 +12,6 @@ import {
 	toastWarn,
 } from '@/lib/utils/toasts'
 
-//Interfejs tylko chwilowo, bo nie posiadam typu z modelu mongoosowego dla zapisywanej do DB daty
-interface IData {
-	title: string | null
-	article: string | null
-	creator: any | null
-	_id: string | null
-}
-
 export const handleResetForm =
 	(reset: UseFormReset<CreatePostFieldsType>) =>
 	(e: React.MouseEvent<HTMLButtonElement>) => {
@@ -33,7 +25,7 @@ export const handleCreatePost = async (data: CreatePostFieldsType) => {
 			setTimeout(resolve, 2000)
 		})
 
-		const result: IDataResult<IData> = await createPost(data)
+		const result: IDataResult<IPost> = await createPost(data)
 
 		if (result.error) {
 			toastError(result.error)
@@ -62,7 +54,7 @@ export const handleDeletePost = async (data: IPost) => {
 
 		console.log('Post prepared to delete', data._id)
 
-		const result: IDataResult<IData> = await deletePost(data._id)
+		const result: IDataResult<IPost> = await deletePost(data._id)
 
 		if (result.error) {
 			console.error('Error deleting post:', result.error)

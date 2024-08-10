@@ -1,12 +1,17 @@
 'use server'
 
+//modules
 import mongoose from 'mongoose'
 import { revalidatePath } from 'next/cache'
-import { CreatePostFieldsType } from '@/lib/types/zod'
-import { connectToDB } from '@/lib/utils/database'
-import PostModel from '../models/post.model'
-import UserModel from '@/lib/models/user.model'
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
+//lib
+import { connectToDB } from '@/lib/utils/database'
+import PostModel from '@/lib/models/post.model'
+import UserModel from '@/lib/models/user.model'
+import { CreatePostFieldsType } from '@/lib/types/zod'
+import { deepClone } from '@/lib/utils'
+import { IDataResult } from '@/lib/types/results'
+import { IPost } from '@/lib/types'
 
 // CREATE
 export async function createPost(data: CreatePostFieldsType) {
@@ -54,7 +59,7 @@ export async function createPost(data: CreatePostFieldsType) {
 	}
 }
 
-// GET
+// READ
 export async function getPosts() {
 	try {
 		await connectToDB()
@@ -104,7 +109,7 @@ export async function getPost(id: string) {
 }
 
 // DELETE
-export async function deletePost(id: string) {
+export async function deletePost(id: string): Promise<IDataResult<IPost>> {
 	try {
 		if (!id) {
 			return {
@@ -136,19 +141,19 @@ export async function deletePost(id: string) {
 			}
 		}
 
-		const clonePost = JSON.parse(JSON.stringify(deletedPost))
+		const res = deepClone(deletedPost)
 
-		console.log('Post deleted from Data Base', clonePost)
+		console.log('Post deleted from Data Base', res)
 
 		revalidatePath('/posts')
 
 		return {
 			success: true,
 			data: {
-				title: clonePost.title,
-				article: clonePost.article,
-				creator: clonePost.creator,
-				_id: clonePost._id,
+				title: res.title,
+				article: res.article,
+				creator: res.creator,
+				_id: res._id,
 			},
 		}
 	} catch (err) {

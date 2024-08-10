@@ -1,9 +1,12 @@
 'use client'
 
-import DropDownMenu from '@/components/shared/DropDownMenu'
+//modules
+import { useState } from 'react'
+//lib
 import { handleDeletePost, handleEditPost } from '@/lib/handlers/post.handlers'
 import { IPost } from '@/lib/types'
-import { useState } from 'react'
+//components
+import DropDownMenu from '@/components/shared/DropDownMenu'
 import PostDeleteDialog from '@/components/dialogs/PostDeleteDialog'
 
 interface PostDropDownMenuProps {

@@ -1,9 +1,10 @@
-import PostsListItem from '@/components/content/PostsListItem'
+//lib
 import { IPost } from '@/lib/types'
 import { getPosts } from '@/lib/actions/post.actions'
+//components
+import PostsListItem from '@/components/content/PostsListItem'
 
 export default async function PostsList() {
-	
 	const { data } = await getPosts()
 
 	return (
@@ -14,21 +15,6 @@ export default async function PostsList() {
 		</ul>
 	)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import PostsListItem from '@/components/content/PostsListItem'
 // import { IPost } from '@/lib/types'
