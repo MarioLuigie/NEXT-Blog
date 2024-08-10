@@ -2,10 +2,11 @@
 
 //modules
 import { useState } from 'react'
-import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
+// import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
 //lib
 import { handleDeletePost, handleEditPost } from '@/lib/handlers/post.handlers'
 import { IPost } from '@/lib/types'
+import { useUser } from '@/lib/context'
 //components
 import DropDownMenu from '@/components/shared/DropDownMenu'
 import PostDeleteDialog from '@/components/dialogs/PostDeleteDialog'
@@ -15,8 +16,10 @@ export default function PostDropDownMenu({ data }: { data: IPost }) {
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState<boolean>(false)
 	const [isUpdateDialogOpen, setIsUpdateDialogOpen] = useState<boolean>(false)
 	const [isReportDialogOpen, setIsReportDialogOpen] = useState<boolean>(false)
+	const { user } = useUser()
 
-	const { user } = useKindeBrowserClient()
+	//Rezygnuje z useKindeBrowserClient w kazdej instancji PostDropDownMenu w celu zoptymalizowania aplikacji i tworze user context przez co tylko raz uzywam useKindeBrowserClient a wiec tylko raz wysyłam żadanie GET api/auth/setup zamiast tyle razy ile instancji PostDropDownMenu
+	// const { user } = useKindeBrowserClient()
 
 	// Delete
 	const handleDeleteClick = () => {
