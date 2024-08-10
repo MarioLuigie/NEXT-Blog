@@ -1,11 +1,12 @@
 //lib
 import { IPost } from '@/lib/types'
 import { getPosts } from '@/lib/actions/post.actions'
+import { IDataResult } from '@/lib/types/results'
 //components
 import PostsListItem from '@/components/content/PostsListItem'
 
 export default async function PostsList() {
-	const { data } = await getPosts()
+	const { data }: IDataResult<IPost[]> = await getPosts()
 
 	return (
 		<ul className="grid grid-cols-1 lg:grid-cols-2 gap-12 p-10">

@@ -14,7 +14,9 @@ import { IDataResult } from '@/lib/types/results'
 import { IPost } from '@/lib/types'
 
 // CREATE
-export async function createPost(data: CreatePostFieldsType) {
+export async function createPost(
+	data: CreatePostFieldsType
+): Promise<IDataResult<IPost>> {
 	const { getUser } = getKindeServerSession()
 
 	try {
@@ -60,7 +62,7 @@ export async function createPost(data: CreatePostFieldsType) {
 }
 
 // READ
-export async function getPosts() {
+export async function getPosts(): Promise<IDataResult<IPost[]>> {
 	try {
 		await connectToDB()
 		// Spłaszczam dokumenty mongoose do prostych js objects, moge to zrobić, bo nie modyfikuje ich i korzystam z trasy GET a nie PUT, PATCH, POST
@@ -82,7 +84,7 @@ export async function getPosts() {
 	}
 }
 
-export async function getPost(id: string) {
+export async function getPost(id: string): Promise<IDataResult<IPost>> {
 	try {
 		await connectToDB()
 

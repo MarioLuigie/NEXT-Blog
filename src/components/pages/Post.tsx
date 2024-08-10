@@ -1,11 +1,13 @@
 //lib
 import { getPost } from '@/lib/actions/post.actions'
+import { IDataResult } from '@/lib/types/results'
+import { IPost } from '@/lib/types'
 //components
 import PostDropDownMenu from '@/components/content/PostDropDownMenu'
 import PostSignature from '@/components/content/PostSignature'
 
 export default async function Post({ params }: { params: { post: string } }) {
-	const { data } = await getPost(params.post)
+	const { data }: IDataResult<IPost> = await getPost(params.post)
 
 	return (
 		<div className="flex flex-wrap shadow-2xl grow">
