@@ -15,10 +15,10 @@
 
 //POST
 export interface IPost {
-	_id: string
-	title: string
-	article: string
-	creator: any
+	_id: string | null
+	title: string | null
+	article: string | null
+	creator: any | null
 }
 
 //USER

@@ -98,7 +98,7 @@ export async function getPost(id: string) {
 	} catch (err) {
 		return {
 			success: false,
-			data: {},
+			data: {title: null, article: null, creator: null, _id: null},
 			error: { message: 'An error occurred' },
 		}
 	}

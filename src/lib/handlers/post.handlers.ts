@@ -1,6 +1,7 @@
 //modules
 import { UseFormReset } from 'react-hook-form'
 //lib
+import { IPost } from '@/lib/types'
 import { CreatePostFieldsType } from '../types/zod'
 import { IDataResult } from '@/lib/types/results'
 import { createPost } from '@/lib/actions/post.actions'
@@ -48,12 +49,12 @@ export const handleCreatePost = async (data: CreatePostFieldsType) => {
 	}
 }
 
-export const handleEditPost = (id: string) => () => {
-	console.log('Post edited', id)
+export const handleEditPost = (data: IPost) => () => {
+	console.log('Post edited', data._id)
 }
 
-export const handleDeletePost = (id: string) => () => {
-	console.log('Post deleted', id)
+export const handleDeletePost = (data: IPost) => () => {
+	console.log('Post deleted', data._id)
 }
 
 export const handleHidePost = () => {
