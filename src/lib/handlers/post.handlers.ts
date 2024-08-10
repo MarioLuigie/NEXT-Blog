@@ -55,17 +55,25 @@ export const handleEditPost = (data: IPost) => () => {
 
 export const handleDeletePost = async (data: IPost) => {
 	try {
-		const result: IDataResult<IData> = await deletePost(data)
+		if (!data._id) {
+			toastError({ message: 'Invalid post ID' })
+			return
+		}
+
+		console.log('Post prepared to delete', data._id)
+
+		const result: IDataResult<IData> = await deletePost(data._id)
 
 		if (result.error) {
+			console.error('Error deleting post:', result.error)
 			toastError(result.error)
 		} else {
-			toastSuccess({ message: 'Post deleted with successfully!' })
+			toastSuccess({ message: 'Post deleted successfully!' })
 		}
 	} catch (err) {
-		console.error(err)
+		console.error('Unexpected error during post deletion:', err)
+		toastError({ message: 'An unexpected error occurred' })
 	}
-	console.log('Post prepared to delete', data._id)
 }
 
 export const handleHidePost = () => {

@@ -1,8 +1,8 @@
 'use server'
 
+import mongoose from 'mongoose'
 import { revalidatePath } from 'next/cache'
 import { CreatePostFieldsType } from '@/lib/types/zod'
-import { IPost } from '@/lib/types'
 import { connectToDB } from '@/lib/utils/database'
 import PostModel from '../models/post.model'
 import UserModel from '@/lib/models/user.model'
@@ -104,13 +104,37 @@ export async function getPost(id: string) {
 }
 
 // DELETE
-export async function deletePost(data: IPost) {
+export async function deletePost(id: string) {
 	try {
+		if (!id) {
+			return {
+				success: false,
+				data: { title: null, article: null, creator: null, _id: null },
+				error: { message: 'Invalid ID' },
+			}
+		}
+
+		if (!mongoose.Types.ObjectId.isValid(id)) {
+			return {
+				success: false,
+				data: { title: null, article: null, creator: null, _id: null },
+				error: { message: 'Invalid ObjectId format' },
+			}
+		}
+
 		await connectToDB()
 
-		const deletedPost = await PostModel.findByIdAndDelete(data._id).populate(
+		const deletedPost = await PostModel.findByIdAndDelete(id).populate(
 			'creator'
 		)
+
+		if (!deletedPost) {
+			return {
+				success: false,
+				data: { title: null, article: null, creator: null, _id: null },
+				error: { message: 'Post to delete not found' },
+			}
+		}
 
 		const clonePost = JSON.parse(JSON.stringify(deletedPost))
 
