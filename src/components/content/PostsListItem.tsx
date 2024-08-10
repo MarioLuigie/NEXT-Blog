@@ -5,7 +5,7 @@ import { truncateText } from '@/lib/utils'
 import { IPost } from '@/lib/types'
 //components
 import PostSignature from '@/components/content/PostSignature'
-import PostDropDownMenu from '@/components/shared/PostDropDownMenu'
+import PostDropDownMenu from '@/components/content/PostDropDownMenu'
 
 export default function PostsListItem({ post }: { post: IPost }) {
 	// console.log('***', handleDeletePost(post._id))
