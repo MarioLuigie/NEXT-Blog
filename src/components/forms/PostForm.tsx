@@ -1,18 +1,16 @@
 'use client'
 //modules
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 //lib
 import { createPostSchema, CreatePostFieldsType } from '@/lib/types/zod'
+import { handleResetForm, handleCreatePost } from '@/lib/handlers/post.handlers'
 //components
 import FormField from '@/components/shared/FormField'
 import Button from '@/components/shared/Button'
-//handlers
-import { handleResetForm, handleCreatePost } from '@/lib/handlers/post.handlers'
-//modules
-import { useRouter } from 'next/navigation'
 
-export default function CreatePostForm() {
+export default function PostForm() {
 	const {
 		register,
 		handleSubmit,
