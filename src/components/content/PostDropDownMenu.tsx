@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 // import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
 //lib
-import { handleDeletePost, handleEditPost } from '@/lib/handlers/post.handlers'
+import { handleDeletePost } from '@/lib/handlers/post.handlers'
 import { IPost } from '@/lib/types'
 import { useUser } from '@/lib/context'
 //components
@@ -15,8 +15,8 @@ import PostUpdateDialog from '@/components/dialogs/PostUpdateDialog'
 
 export default function PostDropDownMenu({ data }: { data: IPost }) {
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState<boolean>(false)
-	const [isUpdateDialogOpen, setIsUpdateDialogOpen] = useState<boolean>(false)
 	const [isReportDialogOpen, setIsReportDialogOpen] = useState<boolean>(false)
+	// const [isUpdateDialogOpen, setIsUpdateDialogOpen] = useState<boolean>(false)
 	const { user } = useUser()
 	const router = useRouter()
 
@@ -43,19 +43,17 @@ export default function PostDropDownMenu({ data }: { data: IPost }) {
 	// Edit
 	const handleEditClick = () => {
 		router.push(`/update-post?id=${data._id}`)
-		// setIsUpdateDialogOpen(true)
 		console.log('handleEditClick')
 	}
 
-	const handleClosePostUpdateDialog = () => {
-		setIsUpdateDialogOpen(false)
-		console.log('handleClosePostUpdateDialog')
-	}
+	// const handleClosePostUpdateDialog = () => {
+	// 	setIsUpdateDialogOpen(false)
+	// 	console.log('handleClosePostUpdateDialog')
+	// }
 
-	const handleConfirmUpdate = () => {
-		handleEditPost(data)
-		console.log('handleConfirmUpdate', data)
-	}
+	// const handleConfirmUpdate = () => {
+	// 	console.log('handleConfirmUpdate', data)
+	// }
 
 	// Report
 	const handleReportClick = () => {
@@ -84,22 +82,15 @@ export default function PostDropDownMenu({ data }: { data: IPost }) {
 					onClose={handleClosePostDeleteDialog}
 				/>
 			)}
-			{isUpdateDialogOpen && (
+			{/* {isUpdateDialogOpen && (
 				<PostUpdateDialog
 					isOpen={isUpdateDialogOpen}
 					onConfirm={handleConfirmUpdate}
 					onClose={handleClosePostUpdateDialog}
 				/>
-			)}
+			)} */}
 		</>
 	)
 }
 
-{
-	/* <DropDownMenu
-items={[
-	{ label: 'Edit', onClick: handleEditPost(data) },
-	{ label: 'Delete', onClick: handleDeletePost(data) },
-]}
-/> */
-}
+

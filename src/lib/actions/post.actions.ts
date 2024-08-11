@@ -8,14 +8,14 @@ import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 import { connectToDB } from '@/lib/utils/database'
 import PostModel from '@/lib/models/post.model'
 import UserModel from '@/lib/models/user.model'
-import { CreatePostFieldsType } from '@/lib/types/zod'
+import { PostFieldsType } from '@/lib/types/zod'
 import { deepClone } from '@/lib/utils'
 import { IDataResult } from '@/lib/types/results'
 import { IPost } from '@/lib/types'
 
 // CREATE
 export async function createPost(
-	data: CreatePostFieldsType
+	data: PostFieldsType
 ): Promise<IDataResult<IPost>> {
 	const { getUser } = getKindeServerSession()
 
@@ -91,6 +91,70 @@ export async function getPost(id: string): Promise<IDataResult<IPost>> {
 		const post = await PostModel.findById(id).populate('creator').lean()
 
 		const res = deepClone(post)
+
+		return {
+			success: true,
+			data: {
+				title: res.title,
+				article: res.article,
+				creator: res.creator,
+				_id: res._id,
+			},
+		}
+	} catch (err) {
+		return {
+			success: false,
+			data: { title: null, article: null, creator: null, _id: null },
+			error: { message: 'An error occurred' },
+		}
+	}
+}
+
+// UPDATE
+export async function updatePost(
+	data: PostFieldsType,
+	id: string | null
+): Promise<IDataResult<IPost>> {
+	try {
+		if (!id) {
+			return {
+				success: false,
+				data: { title: null, article: null, creator: null, _id: null },
+				error: { message: 'Invalid ID' },
+			}
+		}
+
+		if (!mongoose.Types.ObjectId.isValid(id)) {
+			return {
+				success: false,
+				data: { title: null, article: null, creator: null, _id: null },
+				error: { message: 'Invalid ObjectId format' },
+			}
+		}
+
+		await connectToDB()
+
+		const postToUpdate = {
+			title: data.title,
+			article: data.article,
+		}
+
+		const updatedPost = await PostModel.findByIdAndUpdate(
+			id,
+			postToUpdate
+		).populate('creator')
+
+		if (!updatedPost) {
+			return {
+				success: false,
+				data: { title: null, article: null, creator: null, _id: null },
+				error: { message: 'Post to update not found' },
+			}
+		}
+
+		const res = deepClone(updatedPost)
+
+		revalidatePath('/posts')
 
 		return {
 			success: true,

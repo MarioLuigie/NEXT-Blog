@@ -2,9 +2,9 @@
 import { UseFormReset } from 'react-hook-form'
 //lib
 import { IPost } from '@/lib/types'
-import { CreatePostFieldsType } from '../types/zod'
+import { PostFieldsType } from '@/lib/types/zod'
 import { IDataResult } from '@/lib/types/results'
-import { createPost, deletePost } from '@/lib/actions/post.actions'
+import { createPost, deletePost, updatePost } from '@/lib/actions/post.actions'
 import {
 	toastSuccess,
 	toastError,
@@ -13,13 +13,13 @@ import {
 } from '@/lib/utils/toasts'
 
 export const handleResetForm =
-	(reset: UseFormReset<CreatePostFieldsType>) =>
+	(reset: UseFormReset<PostFieldsType>) =>
 	(e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault()
 		reset()
 	}
 
-export const handleCreatePost = async (data: CreatePostFieldsType) => {
+export const handleCreatePost = async (data: PostFieldsType) => {
 	try {
 		await new Promise((resolve) => {
 			setTimeout(resolve, 2000)
@@ -43,8 +43,25 @@ export const handleCreatePost = async (data: CreatePostFieldsType) => {
 	}
 }
 
-export const handleEditPost = (data: IPost) => () => {
-	console.log('Post post prepared do edit', data._id)
+export const handleUpdatePost = async (
+	data: PostFieldsType,
+	id: string | null
+) => {
+	try {
+		const result: IDataResult<IPost> = await updatePost(data, id)
+
+		if (result.error) {
+			console.error('Error updating post:', result.error)
+			toastError(result.error)
+			return result.error
+		} else {
+			toastSuccess({ message: 'Post updated successfully!' })
+			return null
+		}
+	} catch (err) {
+		console.error('Unexpected error during post updating:', err)
+		toastError({ message: 'An unexpected error occurred' })
+	}
 }
 
 export const handleDeletePost = async (data: IPost) => {

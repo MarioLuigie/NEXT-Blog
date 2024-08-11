@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const createPostSchema = z.object({
+export const PostSchema = z.object({
 	title: z
 		.string()
 		.min(5, { message: 'Write min 5 characters' })
@@ -11,4 +11,4 @@ export const createPostSchema = z.object({
 		.max(550, { message: 'Write max 350 characters' }),
 })
 
-export type CreatePostFieldsType = z.infer<typeof createPostSchema>
+export type PostFieldsType = z.infer<typeof PostSchema>
