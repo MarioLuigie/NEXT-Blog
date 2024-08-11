@@ -1,5 +1,5 @@
-import CreatePost from '@/components/pages/CreatePost'
+import CreatePostPage from '@/components/pages/CreatePostPage'
 
 export default function Page() {
-	return <CreatePost />
+	return <CreatePostPage />
 }

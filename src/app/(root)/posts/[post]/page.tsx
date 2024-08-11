@@ -1,5 +1,5 @@
-import Post from '@/components/pages/Post'
+import PostPage from '@/components/pages/PostPage'
 
 export default function Page({ params }: { params: { post: string } }) {
-	return <Post params={params}/>
+	return <PostPage params={params}/>
 }

@@ -6,7 +6,7 @@ import { IPost } from '@/lib/types'
 import PostDropDownMenu from '@/components/content/PostDropDownMenu'
 import PostSignature from '@/components/content/PostSignature'
 
-export default async function Post({ params }: { params: { post: string } }) {
+export default async function PostPage({ params }: { params: { post: string } }) {
 	const { data }: IDataResult<IPost> = await getPost(params.post)
 
 	return (

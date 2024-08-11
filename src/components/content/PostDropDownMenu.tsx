@@ -42,7 +42,8 @@ export default function PostDropDownMenu({ data }: { data: IPost }) {
 
 	// Edit
 	const handleEditClick = () => {
-		setIsUpdateDialogOpen(true)
+		router.push(`/update-post?id=${data._id}`)
+		// setIsUpdateDialogOpen(true)
 		console.log('handleEditClick')
 	}
 

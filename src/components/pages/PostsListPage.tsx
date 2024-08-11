@@ -5,7 +5,7 @@ import { IDataResult } from '@/lib/types/results'
 //components
 import PostsListItem from '@/components/content/PostsListItem'
 
-export default async function PostsList() {
+export default async function PostsListPage() {
 	const { data }: IDataResult<IPost[]> = await getPosts()
 
 	return (

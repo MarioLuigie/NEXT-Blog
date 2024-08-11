@@ -1,4 +1,4 @@
-import PostsList from '@/components/pages/PostsList'
+import PostsListPage from '@/components/pages/PostsListPage'
 
 export const metadata = {
 	title: 'Posts',
@@ -6,5 +6,5 @@ export const metadata = {
 }
 
 export default function Page() {
-	return <PostsList />
+	return <PostsListPage />
 }
