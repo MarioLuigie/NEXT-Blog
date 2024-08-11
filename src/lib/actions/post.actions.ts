@@ -69,7 +69,7 @@ export async function getPosts(): Promise<IDataResult<IPost[]>> {
 		// Zyskuje mniejsza wage elementów
 		const posts = await PostModel.find().populate('creator').lean()
 
-		const postsList = JSON.parse(JSON.stringify(posts))
+		const postsList = JSON.parse(JSON.stringify(posts)).reverse()
 
 		return {
 			success: true,
