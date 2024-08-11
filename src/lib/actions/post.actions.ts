@@ -38,17 +38,17 @@ export async function createPost(
 
 		// Konwersja na prosty obiekt JSON, pozbywając się nietypowych struktur
 		//Uzyj naszego deepClone albo NextResponse
-		const simplePost = JSON.parse(JSON.stringify(populatedPost))
+		const res = deepClone(populatedPost)
 
 		revalidatePath('/posts')
 
 		return {
 			success: true,
 			data: {
-				title: simplePost.title,
-				article: simplePost.article,
-				creator: simplePost.creator,
-				_id: simplePost._id,
+				title: res.title,
+				article: res.article,
+				creator: res.creator,
+				_id: res._id,
 			},
 		}
 		// throw new Error()
@@ -69,11 +69,11 @@ export async function getPosts(): Promise<IDataResult<IPost[]>> {
 		// Zyskuje mniejsza wage elementów
 		const posts = await PostModel.find().populate('creator').lean()
 
-		const postsList = JSON.parse(JSON.stringify(posts)).reverse()
+		const res = deepClone(posts).reverse()
 
 		return {
 			success: true,
-			data: [...postsList],
+			data: [...res],
 		}
 	} catch (err) {
 		return {
@@ -90,15 +90,15 @@ export async function getPost(id: string): Promise<IDataResult<IPost>> {
 
 		const post = await PostModel.findById(id).populate('creator').lean()
 
-		const clonePost = JSON.parse(JSON.stringify(post))
+		const res = deepClone(post)
 
 		return {
 			success: true,
 			data: {
-				title: clonePost.title,
-				article: clonePost.article,
-				creator: clonePost.creator,
-				_id: clonePost._id,
+				title: res.title,
+				article: res.article,
+				creator: res.creator,
+				_id: res._id,
 			},
 		}
 	} catch (err) {
