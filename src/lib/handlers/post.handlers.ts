@@ -48,6 +48,10 @@ export const handleUpdatePost = async (
 	id: string | null
 ) => {
 	try {
+		await new Promise((resolve) => {
+			setTimeout(resolve, 2000)
+		})
+		
 		const result: IDataResult<IPost> = await updatePost(data, id)
 
 		if (result.error) {

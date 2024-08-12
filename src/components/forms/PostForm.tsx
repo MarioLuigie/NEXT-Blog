@@ -85,11 +85,19 @@ export default function PostForm({
 				/>
 			</div>
 			<div className="flex flex-col gap-5">
-				<Button
-					label={isSubmitting ? 'Submitting...' : 'Submit'}
-					type="submit"
-					disabled={isSubmitting}
-				/>
+				{post ? (
+					<Button
+						label={isSubmitting ? 'Updating...' : 'Update'}
+						type="submit"
+						disabled={isSubmitting}
+					/>
+				) : (
+					<Button
+						label={isSubmitting ? 'Creating...' : 'Create'}
+						type="submit"
+						disabled={isSubmitting}
+					/>
+				)}
 				{post ? (
 					<Button
 						label={'Cancel'}
