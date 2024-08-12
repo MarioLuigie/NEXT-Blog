@@ -85,6 +85,28 @@ export default function PostForm({
 				/>
 			</div>
 			<div className="flex flex-col gap-5">
+				<Button
+					label={
+						isSubmitting
+							? post
+								? 'Updating...'
+								: 'Creating...'
+							: post
+							? 'Update'
+							: 'Create'
+					}
+					type="submit"
+					disabled={isSubmitting}
+				/>
+				<Button
+					label={post ? 'Cancel' : 'Clear'}
+					type={post ? 'button' : 'reset'}
+					outline
+					onClick={post ? () => router.push(url) : handleResetForm(reset)}
+				/>
+			</div>
+
+			{/* <div className="flex flex-col gap-5">
 				{post ? (
 					<Button
 						label={isSubmitting ? 'Updating...' : 'Update'}
@@ -113,7 +135,7 @@ export default function PostForm({
 						onClick={handleResetForm(reset)}
 					/>
 				)}
-			</div>
+			</div> */}
 		</form>
 	)
 }

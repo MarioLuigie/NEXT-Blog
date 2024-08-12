@@ -8,7 +8,7 @@ type MenuItem = {
 	onClick: () => void
 }
 
-export default function DropDownMenu({ items }: {items: MenuItem[]}) {
+export default function DropDownMenu({ items }: { items: MenuItem[] }) {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 	const menuRef = useRef<HTMLDivElement>(null)
 
