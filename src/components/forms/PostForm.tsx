@@ -15,7 +15,13 @@ import { IPost } from '@/lib/types'
 import FormField from '@/components/shared/FormField'
 import Button from '@/components/shared/Button'
 
-export default function PostForm({ post }: { post?: IPost }) {
+export default function PostForm({
+	post,
+	isPostPage,
+}: {
+	post?: IPost
+	isPostPage?: boolean
+}) {
 	const {
 		register,
 		handleSubmit,
@@ -32,6 +38,8 @@ export default function PostForm({ post }: { post?: IPost }) {
 
 	const router = useRouter()
 
+	const url = isPostPage ? `/posts/${post?._id}` : '/posts'
+
 	const onSubmit: SubmitHandler<PostFieldsType> = async (
 		data: PostFieldsType
 	) => {
@@ -40,7 +48,7 @@ export default function PostForm({ post }: { post?: IPost }) {
 				const result = await handleUpdatePost(data, post._id)
 				if (!result) {
 					reset(data)
-					router.push('/posts')
+					router.push(url)
 				} else {
 					console.error(result.message)
 				}
@@ -48,7 +56,7 @@ export default function PostForm({ post }: { post?: IPost }) {
 				const result = await handleCreatePost(data)
 				if (!result) {
 					reset()
-					router.push('/posts')
+					router.push(url)
 				} else {
 					console.error(result.message)
 				}
@@ -87,7 +95,7 @@ export default function PostForm({ post }: { post?: IPost }) {
 						label={'Cancel'}
 						type="button"
 						outline
-						onClick={() => router.push('/posts')}
+						onClick={() => router.push(url)}
 					/>
 				) : (
 					<Button

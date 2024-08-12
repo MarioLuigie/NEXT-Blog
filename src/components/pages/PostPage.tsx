@@ -15,7 +15,7 @@ export default async function PostPage({ params }: { params: { post: string } })
 			<div className="flex flex-col w-[100%] sm:w-1/2 lg:w-1/3 grow p-10 bg-zinc-50">
 				<div className="flex flex-between">
 					<PostSignature creator={data.creator} />
-					<PostDropDownMenu data={data} />
+					<PostDropDownMenu data={data} isPostPage />
 				</div>
 				<h2 className="text-4xl text-zinc-900 font-bold mt-8">
 					{data.title}

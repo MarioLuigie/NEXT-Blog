@@ -1,7 +1,7 @@
 import PostsListPage from '@/components/pages/PostsListPage'
 
 export const metadata = {
-	title: 'Posts',
+	title: 'CineXplore Posts',
 	description: 'Posts added from users',
 }
 
