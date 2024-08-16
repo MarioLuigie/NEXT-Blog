@@ -8,8 +8,8 @@ export default function ProfileLabel({ user }: { user: any }) {
       <Image
         src={user?.picture}
         alt="Avatar"
-        width={45}
-        height={45}
+        width={35}
+        height={35}
         className="rounded-full"
       />
     ) : (
@@ -17,7 +17,7 @@ export default function ProfileLabel({ user }: { user: any }) {
         {user?.given_name?.charAt(0)}
       </div>
     )}
-    <div className="flex-center gap-1">
+    <div className="flex-center gap-1 max-md:hidden">
       <p>{user?.given_name}</p>
       <p>{user?.family_name}</p>
     </div>
