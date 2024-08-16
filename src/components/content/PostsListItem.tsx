@@ -15,13 +15,13 @@ export default function PostsListItem({ post }: { post: IPost }) {
 				<PostDropDownMenu data={post} />
 			</div>
 			<Link href={`/posts/${post._id}`}>
-				<h1 className="text-3xl font-extrabold text-gray-900 leading-tight">
+				<h1 className="text-3xl font-extrabold text-gray-900 leading-tight mb-5">
 					{post.title}
 				</h1>
+				<p className="text-lg text-gray-800 text-justify">
+					{truncateText(post.article, 100)}
+				</p>
 			</Link>
-			<p className="text-lg text-gray-800 text-justify">
-				{truncateText(post.article, 100)}
-			</p>
 		</li>
 	)
 }

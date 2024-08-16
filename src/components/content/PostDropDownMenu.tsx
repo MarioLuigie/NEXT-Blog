@@ -12,8 +12,15 @@ import { useUser } from '@/lib/context'
 import DropDownMenu from '@/components/shared/DropDownMenu'
 import PostDeleteDialog from '@/components/dialogs/PostDeleteDialog'
 import PostUpdateDialog from '@/components/dialogs/PostUpdateDialog'
+import SVGImage from '../shared/SVGImage'
 
-export default function PostDropDownMenu({ data, isPostPage }: { data: IPost, isPostPage?: boolean }) {
+export default function PostDropDownMenu({
+	data,
+	isPostPage,
+}: {
+	data: IPost
+	isPostPage?: boolean
+}) {
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState<boolean>(false)
 	const [isReportDialogOpen, setIsReportDialogOpen] = useState<boolean>(false)
 	// const [isUpdateDialogOpen, setIsUpdateDialogOpen] = useState<boolean>(false)
@@ -42,7 +49,7 @@ export default function PostDropDownMenu({ data, isPostPage }: { data: IPost, is
 
 	// Edit
 	const handleEditClick = () => {
-		if(isPostPage) {
+		if (isPostPage) {
 			router.push(`/update-post?id=${data._id}&isPostPage=true`)
 		} else {
 			router.push(`/update-post?id=${data._id}`)
@@ -73,10 +80,12 @@ export default function PostDropDownMenu({ data, isPostPage }: { data: IPost, is
 						{ label: 'Edit Post', onClick: handleEditClick },
 						{ label: 'Delete Post', onClick: handleDeleteClick },
 					]}
+					trigger={<SVGImage path="/assets/icons/more-horizontal.svg" />}
 				/>
 			) : (
 				<DropDownMenu
 					items={[{ label: 'Report Post', onClick: handleReportClick }]}
+					trigger={<SVGImage path="/assets/icons/more-horizontal.svg" />}
 				/>
 			)}
 			{isDeleteDialogOpen && (
@@ -96,5 +105,3 @@ export default function PostDropDownMenu({ data, isPostPage }: { data: IPost, is
 		</>
 	)
 }
-
-

@@ -2,15 +2,15 @@ import { paths } from "./paths"
 
 export const navItems = [
   {
-    label: 'home',
+    label: 'Home',
     href: paths.HOME
   },
   {
-    label: 'posts',
+    label: 'All Articles',
     href: paths.POSTS
   },
   {
-    label: 'create post',
+    label: 'Create Article',
     href: paths.CREATE_POST
   },
 ]

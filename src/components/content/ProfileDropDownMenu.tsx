@@ -1,14 +1,12 @@
 'use client'
 
-import SVGImage from '@/components/shared/SVGImage'
+//modules
+import { LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components'
 import { useState, useEffect, useRef } from 'react'
+//components
+import ProfileLabel from '@/components/content/ProfileLabel'
 
-type MenuItem = {
-	label: string
-	onClick: () => void
-}
-
-export default function DropDownMenu({ items, trigger }: { items: MenuItem[], trigger?: any }) {
+export default function ProfileDropDownMenu({ user }: { user: any }) {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 	const menuRef = useRef<HTMLDivElement>(null)
 
@@ -32,22 +30,15 @@ export default function DropDownMenu({ items, trigger }: { items: MenuItem[], tr
 	return (
 		<div className="relative" ref={menuRef}>
 			<button onClick={toggleMenu} className="text-zinc-700 cursor-pointer">
-				{trigger}
+				<ProfileLabel user={user} />
 			</button>
 			{isOpen && (
-				<div className="absolute right-0 top-3 mt-2 bg-white border border-gray-300 shadow-lg flex flex-col min-w-[140px] rounded-md">
-					{items.map((item, i) => (
-						<div
-							key={i}
-							className="px-4 py-2 cursor-pointer hover:bg-gray-100 text-zinc-500"
-							onClick={() => {
-								item.onClick()
-								setIsOpen(false)
-							}}
-						>
-							{item.label}
-						</div>
-					))}
+				<div className="absolute right-0 top-12 bg-white border border-gray-300 shadow-lg flex flex-col min-w-[300px] rounded-md p-4 gap-5">
+          <div>Profile</div>
+          <div>Account Settings</div>
+          <div>Dark Mode</div>
+          <div>Help and Support</div>
+					<LogoutLink className="font-bold">Log out</LogoutLink>
 				</div>
 			)}
 		</div>

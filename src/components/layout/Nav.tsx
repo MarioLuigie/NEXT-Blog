@@ -28,7 +28,7 @@ function NavItem({ data: { label, href } }: { data: NavItemProps }) {
 export default function Nav() {
 	return (
 		<nav>
-			<ul className="flex gap-4">
+			<ul className="flex gap-8">
 				{navItems.map((navItem) => (
 					<NavItem data={navItem} key={navItem.label} />
 				))}
