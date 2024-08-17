@@ -15,7 +15,7 @@ export default async function Header() {
 	const user = await getUser()
 
 	return (
-		<header className="bg-zinc-50 border-b-2 p-6 max-sm:p-4 z-40 min-h-[140px] sticky top-0 left-0 w-full grid grid-cols-3 items-center">
+		<header className="bg-zinc-50 border-b-2 p-6 max-sm:p-4 z-40 min-h-[120px] sticky top-0 left-0 w-full grid grid-cols-3 items-center">
 			{/* Logo and Menu for desktop */}
 			<div className="hidden lg:block">
 				<Logo imagePath="/assets/Logo01.svg" redirectPath="/" />
