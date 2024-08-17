@@ -2,13 +2,33 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { navItems } from '@/lib/constants'
 
-type SheetProps = {
-  left?: boolean
-  right?: boolean
+function SheetItem({
+	data,
+	closeMenu,
+}: {
+	data: { label: string; href: string }
+	closeMenu: () => void
+}) {
+	return (
+		<li>
+			<Link href={data.href}>
+				<div onClick={closeMenu} className="p-2 text-lg hover:bg-gray-100">
+					{data.label}
+				</div>
+			</Link>
+		</li>
+	)
 }
 
-export default function Sheet({ left = false, right = false }: SheetProps) {
+export default function Sheet({
+	left = false,
+	right = false,
+}: {
+	left?: boolean
+	right?: boolean
+}) {
 	const [isOpen, setIsOpen] = useState(false)
 
 	const toggleMenu = () => setIsOpen(!isOpen)
@@ -23,7 +43,7 @@ export default function Sheet({ left = false, right = false }: SheetProps) {
 
 	return (
 		<>
-			{/* Hamburger Icon */}
+			{/* Sheet Icon */}
 			<div className={`relative z-50 ${left ? 'ml-auto' : ''}`}>
 				<button
 					className="text-3xl p-2 focus:outline-none"
@@ -54,38 +74,18 @@ export default function Sheet({ left = false, right = false }: SheetProps) {
 						&times;
 					</button>
 				</div>
+				{/* Sheet Navigation */}
 				<nav className="flex flex-col p-4">
-					<Link href="/">
-						<div
-							onClick={closeMenu}
-							className="p-2 text-lg hover:bg-gray-100"
-						>
-							Home
-						</div>
-					</Link>
-					<Link href="/posts">
-						<div
-							onClick={closeMenu}
-							className="p-2 text-lg hover:bg-gray-100"
-						>
-							All Articles
-						</div>
-					</Link>
-					<Link href="/create-post">
-						<div
-							onClick={closeMenu}
-							className="p-2 text-lg hover:bg-gray-100"
-						>
-							Create Article
-						</div>
-					</Link>
+					<ul>
+						{navItems.map((navItem) => (
+							<SheetItem data={navItem} closeMenu={closeMenu} key={navItem.label} />
+						))}
+					</ul>
 				</nav>
 			</div>
 		</>
 	)
 }
-
-
 
 // 'use client'
 

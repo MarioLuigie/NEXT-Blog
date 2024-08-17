@@ -35,12 +35,17 @@ export default async function Header() {
 			{/* Right-aligned Auth Links or Profile DropdownMenu */}
 			<div className="flex-end">
 				{!(await isAuthenticated()) ? (
-					<div className="flex items-center gap-3">
-						<LoginLink>Sign in</LoginLink>
-						<div className="flex items-center bg-black px-3 py-2 text-white rounded-md">
-							<RegisterLink>Sign up</RegisterLink>
+					<>
+						<div className="flex items-center gap-3 max-sm:hidden">
+							<LoginLink>Sign in</LoginLink>
+							<div className="flex items-center bg-black px-3 py-2 text-white rounded-md">
+								<RegisterLink>Sign up</RegisterLink>
+							</div>
 						</div>
-					</div>
+						<div className="flex items-center bg-black px-3 py-2 text-white rounded-md sm:hidden">
+							<LoginLink>Login</LoginLink>
+						</div>
+					</>
 				) : (
 					<ProfileDropDownMenu user={user} />
 				)}

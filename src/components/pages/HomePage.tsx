@@ -4,7 +4,7 @@ export default function HomePage() {
 			<div className="w-full sm:w-1/2 flex flex-col items-center">
 				<div className="max-w-[480px]">
 					<h1 className="text-center text-5xl font-extrabold text-gray-900 leading-tight mb-4">
-						Explore the icons of world cinema
+						Voyage through the World Cinema
 					</h1>
 					<p className="text-center text-lg text-gray-400 mb-6">
 						Cinematography information at your fingertips! Join us!
@@ -13,7 +13,7 @@ export default function HomePage() {
 				<div>
 					<p className="text-center text-xl text-gray-900 mb-6">
 						Welcome to the world of filmmaking, where every frame tells a
-						story and every edit builds emotions. Don&apos;t be short of time!
+						story and every edit builds emotions.
 					</p>
 				</div>
 			</div>
