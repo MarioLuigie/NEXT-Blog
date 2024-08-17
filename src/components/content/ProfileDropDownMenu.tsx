@@ -33,7 +33,7 @@ export default function ProfileDropDownMenu({ user }: { user: any }) {
 				<ProfileLabel user={user} />
 			</button>
 			{isOpen && (
-				<div className="absolute right-0 top-10 bg-white border border-gray-300 shadow-lg flex flex-col min-w-[300px] rounded-md p-4 gap-5">
+				<div className="absolute right-0 top-10 bg-white border border-gray-300 shadow-lg flex flex-col w-[290px] rounded-md p-4 gap-5">
           <div>Profile</div>
           <div>Account Settings</div>
           <div>Dark Mode</div>

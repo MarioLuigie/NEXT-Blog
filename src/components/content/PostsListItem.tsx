@@ -9,7 +9,7 @@ import PostDropDownMenu from '@/components/content/PostDropDownMenu'
 
 export default function PostsListItem({ post }: { post: IPost }) {
 	return (
-		<li className="flex flex-col gap-6 w-full shadow-lg p-10 rounded-md bg-zinc-50">
+		<li className="flex flex-col gap-6 w-full shadow-lg p-4 lg:p-10 rounded-md bg-zinc-50">
 			<div className="flex flex-between">
 				<PostSignature creator={post.creator} />
 				<PostDropDownMenu data={post} />
