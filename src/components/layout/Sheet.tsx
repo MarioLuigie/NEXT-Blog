@@ -8,7 +8,7 @@ function SheetItem({
 	data,
 	closeMenu,
 }: {
-	data: { label: string; href: string }
+	data: { label: string, href: string }
 	closeMenu: () => void
 }) {
 	return (
@@ -78,7 +78,11 @@ export default function Sheet({
 				<nav className="flex flex-col p-4">
 					<ul>
 						{navItems.map((navItem) => (
-							<SheetItem data={navItem} closeMenu={closeMenu} key={navItem.label} />
+							<SheetItem
+								data={navItem}
+								closeMenu={closeMenu}
+								key={navItem.label}
+							/>
 						))}
 					</ul>
 				</nav>
