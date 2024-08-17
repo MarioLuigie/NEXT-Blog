@@ -1,6 +1,5 @@
 'use client'
 
-import SVGImage from '@/components/shared/SVGImage'
 import { useState, useEffect, useRef } from 'react'
 
 type MenuItem = {
