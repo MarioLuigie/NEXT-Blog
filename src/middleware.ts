@@ -9,7 +9,7 @@ interface IKindeRequest {
 export default withAuth(
 	async function middleware(req: IKindeRequest) {
 		console.log('***KINDE AUTH REQUEST', req.kindeAuth)
-	},
+	}
 	// {
 	// 	isReturnToCurrentPage: true,
 	// 	loginPage: '/posts',//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
@@ -21,7 +21,7 @@ export default withAuth(
 )
 
 export const config = {
-	matcher: ['/create-post', '/posts'],
+	matcher: ['/dashboard', '/posts', '/create-post'],
 }
 
 //req.kindeAuth zwraca obiekt z polami token i user {token:{}, user: {}}
@@ -57,12 +57,6 @@ export const config = {
 
 // Podsumowanie
 // Aby uniknąć błędów i zapewnić poprawne działanie middleware'ów z autoryzacją, użyj absolutnego URL-a do strony logowania, a nie endpointu API, dla właściwości loginPage. To zapewni, że użytkownicy zostaną przekierowani do odpowiedniego miejsca, aby zalogować się lub odnowić swoją sesję w Twojej aplikacji.
-
-
-
-
-
-
 
 // 1. Prosta funkcja, która zwraca withAuth:
 

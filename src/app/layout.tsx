@@ -8,8 +8,8 @@ import { UserProvider } from '@/lib/context'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-	title: 'cineXplore',
-	description: 'Explore the cine world',
+	title: 'cinevoyage',
+	description: 'Voyage through the world of cinema',
 }
 
 export default function RootLayout({

@@ -1,7 +1,7 @@
-import Home from '@/components/pages/HomePage'
+import HomePage from '@/components/pages/HomePage'
 
 export default function Page() {
-	return <Home />
+	return <HomePage />
 }
 
 //SEO-friendly redirect from '/' to '/dashboard' in next.config.mjs

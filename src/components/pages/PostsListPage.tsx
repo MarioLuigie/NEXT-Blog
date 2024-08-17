@@ -9,7 +9,7 @@ export default async function PostsListPage() {
 	const { data }: IDataResult<IPost[]> = await getPosts()
 
 	return (
-		<ul className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 lg:p-10">
+		<ul className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 lg:p-10 p-4">
 			{data.map((post: IPost) => (
 				<PostsListItem key={post._id} post={post} />
 			))}
