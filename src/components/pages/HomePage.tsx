@@ -18,7 +18,7 @@ export default function HomePage() {
 			{/* Video background Content */}
 			<div className="flex justify-center min-h-[780px]">
 				<video autoPlay loop muted className="object-cover">
-					<source src='/assets/video/space1_2k.mp4' type="video/mp4" />
+					<source src='https://cinevoyage.s3.eu-north-1.amazonaws.com/app-videos/space1_2k.mp4' type="video/mp4" />
 				</video>
 			</div>
 		</div>
