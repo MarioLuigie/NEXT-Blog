@@ -26,6 +26,7 @@ export async function POST(req: Request) {
 		const { header } = decodedToken
 		const { kid } = header
 		console.log('***DECODEDTOKEN:', decodedToken)
+		console.log('***header z decodedToken:', header, kid)
 
 		// Verify the token
 		const key = await client.getSigningKey(kid)
