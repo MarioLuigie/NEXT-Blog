@@ -36,7 +36,7 @@ yarn-error.log*
 next-env.d.ts
 
 # media files
-public/assets/video/
-*.mp4
+public/assets/video/*.mp4
+
 
 
