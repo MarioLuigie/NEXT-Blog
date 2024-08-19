@@ -11,6 +11,7 @@ export default function Logo({ imagePath, redirectPath }: { imagePath: string, r
 						alt="Logo"
 						width={170}
 						height={72}
+						priority
 					/>
 				</div>
 			</Link>
