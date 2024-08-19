@@ -26,7 +26,7 @@ export default function DropDownMenu({ items, trigger }: { items: MenuItem[], tr
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside)
 		}
-	}, [handleClickOutside])
+	})
 
 	return (
 		<div className="relative" ref={menuRef}>

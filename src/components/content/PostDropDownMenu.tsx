@@ -41,8 +41,8 @@ export default function PostDropDownMenu({
 		console.log('handleClosePostDeleteDialog')
 	}
 
-	const handleConfirmDelete = () => {
-		handleDeletePost(data)
+	const handleConfirmDelete = async () => {
+		await handleDeletePost(data)
 		router.push('/posts')
 		console.log('handleConfirmDelete', data)
 	}
