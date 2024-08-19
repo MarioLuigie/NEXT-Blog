@@ -199,6 +199,8 @@ export async function deletePost(id: string): Promise<IDataResult<IPost>> {
 			'creator'
 		)
 
+		console.log("###", deletedPost)
+
 		if (!deletedPost) {
 			return {
 				success: false,
@@ -211,7 +213,7 @@ export async function deletePost(id: string): Promise<IDataResult<IPost>> {
 
 		console.log('Post deleted from Data Base', res)
 
-		revalidatePath('/posts')
+		revalidatePath('/posts', 'layout')
 
 		return {
 			success: true,
