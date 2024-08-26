@@ -74,7 +74,7 @@ export default function PostDropDownMenu({
 
 	return (
 		<>
-			{user?.id === data.creator.kindeId ? (
+			{user?.id === data?.creator?.kindeId ? (
 				<DropDownMenu
 					items={[
 						{ label: 'Edit Post', onClick: handleEditClick },
