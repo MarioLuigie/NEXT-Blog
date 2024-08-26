@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "migrate": "migrate-mongo up",
+    "start": "npm run migrate && next start",
     "lint": "next lint"
   },
   "dependencies": {
