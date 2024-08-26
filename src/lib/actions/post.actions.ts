@@ -58,8 +58,6 @@ export async function createPost(
 		//Uzyj naszego deepClone albo NextResponse
 		const res = deepClone(populatedPost)
 
-		console.log("RES***", res)
-
 		revalidatePath('/posts')
 
 		return {

@@ -13,12 +13,14 @@
 // 	userId: number
 // }
 
+import { IUser } from "@/lib/models/user.model"
+
 //POST
 export interface IPost {
 	_id: string | null
 	title: string | null
 	article: string | null
-	creator: any | null
+	creator: IUser | null
 	createdAt: string | null
 }
 
