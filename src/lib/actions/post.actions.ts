@@ -4,6 +4,7 @@
 import mongoose from 'mongoose'
 import { revalidatePath } from 'next/cache'
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
+import xss from 'xss'
 //lib
 import { connectToDB } from '@/lib/utils/database'
 import PostModel from '@/lib/models/post.model'
@@ -26,7 +27,23 @@ export async function createPost(
 
 		const creator = await UserModel.findOne({ kindeId: user?.id })
 
-		const newPost = { ...data, creator }
+		// Data sanitization
+		const sanitizedTitle = xss(data.title, {
+			whiteList: {}, // Brak dozwolonych tagów HTML
+			stripIgnoreTag: true, // Usuń tagi, które nie są dozwolone
+		})
+
+		const sanitizedArticle = xss(data.article, {
+			whiteList: {}, // Brak dozwolonych tagów HTML
+			stripIgnoreTag: true, // Usuń tagi, które nie są dozwolone
+		})
+
+		const newPost = {
+			...data,
+			creator,
+			title: sanitizedTitle,
+			article: sanitizedArticle,
+		}
 
 		const savedPost = await PostModel.create(newPost)
 
@@ -199,7 +216,7 @@ export async function deletePost(id: string): Promise<IDataResult<IPost>> {
 			'creator'
 		)
 
-		console.log("###", deletedPost)
+		console.log('###', deletedPost)
 
 		if (!deletedPost) {
 			return {
