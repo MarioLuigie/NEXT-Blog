@@ -19,6 +19,7 @@ export interface IPost {
 	title: string | null
 	article: string | null
 	creator: any | null
+	createdAt: string | null
 }
 
 //USER

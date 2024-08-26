@@ -58,22 +58,25 @@ export async function createPost(
 		//Uzyj naszego deepClone albo NextResponse
 		const res = deepClone(populatedPost)
 
+		console.log("RES***", res)
+
 		revalidatePath('/posts')
 
 		return {
 			success: true,
 			data: {
+				_id: res._id,
 				title: res.title,
 				article: res.article,
 				creator: res.creator,
-				_id: res._id,
+				createdAt: res.createdAt,
 			},
 		}
 		// throw new Error()
 	} catch (err) {
 		return {
 			success: false,
-			data: { title: null, article: null, creator: null, _id: null },
+			data: { title: null, article: null, creator: null, _id: null, createdAt: null },
 			error: { message: 'Post has not been added' },
 		}
 	}
@@ -113,16 +116,17 @@ export async function getPost(id: string): Promise<IDataResult<IPost>> {
 		return {
 			success: true,
 			data: {
+				_id: res._id,
 				title: res.title,
 				article: res.article,
 				creator: res.creator,
-				_id: res._id,
+				createdAt: res.createdAt,
 			},
 		}
 	} catch (err) {
 		return {
 			success: false,
-			data: { title: null, article: null, creator: null, _id: null },
+			data: { title: null, article: null, creator: null, _id: null, createdAt: null },
 			error: { message: 'An error occurred' },
 		}
 	}
@@ -137,7 +141,7 @@ export async function updatePost(
 		if (!id) {
 			return {
 				success: false,
-				data: { title: null, article: null, creator: null, _id: null },
+				data: { title: null, article: null, creator: null, _id: null, createdAt: null },
 				error: { message: 'Invalid ID' },
 			}
 		}
@@ -145,7 +149,7 @@ export async function updatePost(
 		if (!mongoose.Types.ObjectId.isValid(id)) {
 			return {
 				success: false,
-				data: { title: null, article: null, creator: null, _id: null },
+				data: { title: null, article: null, creator: null, _id: null, createdAt: null },
 				error: { message: 'Invalid ObjectId format' },
 			}
 		}
@@ -165,7 +169,7 @@ export async function updatePost(
 		if (!updatedPost) {
 			return {
 				success: false,
-				data: { title: null, article: null, creator: null, _id: null },
+				data: { title: null, article: null, creator: null, _id: null, createdAt: null },
 				error: { message: 'Post to update not found' },
 			}
 		}
@@ -177,16 +181,18 @@ export async function updatePost(
 		return {
 			success: true,
 			data: {
+				_id: res._id,
 				title: res.title,
 				article: res.article,
 				creator: res.creator,
-				_id: res._id,
+				createdAt: res.createdAt,
+				
 			},
 		}
 	} catch (err) {
 		return {
 			success: false,
-			data: { title: null, article: null, creator: null, _id: null },
+			data: { title: null, article: null, creator: null, _id: null, createdAt: null },
 			error: { message: 'An error occurred' },
 		}
 	}
@@ -198,7 +204,7 @@ export async function deletePost(id: string): Promise<IDataResult<IPost>> {
 		if (!id) {
 			return {
 				success: false,
-				data: { title: null, article: null, creator: null, _id: null },
+				data: { title: null, article: null, creator: null, _id: null, createdAt: null },
 				error: { message: 'Invalid ID' },
 			}
 		}
@@ -206,7 +212,7 @@ export async function deletePost(id: string): Promise<IDataResult<IPost>> {
 		if (!mongoose.Types.ObjectId.isValid(id)) {
 			return {
 				success: false,
-				data: { title: null, article: null, creator: null, _id: null },
+				data: { title: null, article: null, creator: null, _id: null, createdAt: null },
 				error: { message: 'Invalid ObjectId format' },
 			}
 		}
@@ -222,7 +228,7 @@ export async function deletePost(id: string): Promise<IDataResult<IPost>> {
 		if (!deletedPost) {
 			return {
 				success: false,
-				data: { title: null, article: null, creator: null, _id: null },
+				data: { title: null, article: null, creator: null, _id: null, createdAt: null },
 				error: { message: 'Post to delete not found' },
 			}
 		}
@@ -236,16 +242,17 @@ export async function deletePost(id: string): Promise<IDataResult<IPost>> {
 		return {
 			success: true,
 			data: {
+				_id: res._id,
 				title: res.title,
 				article: res.article,
 				creator: res.creator,
-				_id: res._id,
+				createdAt: res.createdAt,
 			},
 		}
 	} catch (err) {
 		return {
 			success: false,
-			data: { title: null, article: null, creator: null, _id: null },
+			data: { title: null, article: null, creator: null, _id: null, createdAt: null },
 			error: { message: 'An error occurred' },
 		}
 	}
