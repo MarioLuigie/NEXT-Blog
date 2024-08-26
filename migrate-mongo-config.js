@@ -1,3 +1,5 @@
+// import './envConfig.ts'
+require('./envConfig.ts');
 // In this file you can configure migrate-mongo
 
 const config = {
@@ -34,3 +36,5 @@ const config = {
 };
 
 module.exports = config;
+
+
