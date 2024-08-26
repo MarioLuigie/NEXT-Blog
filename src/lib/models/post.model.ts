@@ -2,10 +2,11 @@ import { Schema, models, model } from 'mongoose'
 import { IUser } from '@/lib/models/user.model'
 
 export interface IPost {
+	_id: string
 	title: string
 	article: string
 	creator: IUser
-	_id: string
+	createdAt: string | null
 }
 
 const PostSchema = new Schema({
