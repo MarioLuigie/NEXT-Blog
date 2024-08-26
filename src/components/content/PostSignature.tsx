@@ -7,18 +7,18 @@ type Creator = {
 	lastName: string
 }
 
-export default function PostSignature({ creator }: { creator: Creator }) {
+export default function PostSignature({ creator }: { creator: Creator | undefined }) {
 	return (
 		<div className="flex flex-start gap-2">
 			<Image
 				className="rounded-full w-[33px] aspect-square"
 				width={33}
 				height={33}
-				src={creator.picture}
+				src={creator?.picture || ""}
 				alt="Avatar"
 			/>
 			<p className="text-xs text-zinc-400">
-				{creator.firstName} {creator.lastName}
+				{creator?.firstName} {creator?.lastName}
 			</p>
 		</div>
 	)
