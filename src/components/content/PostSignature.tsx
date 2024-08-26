@@ -1,13 +1,14 @@
+import { IUser } from '@/lib/models/user.model'
 import Image from 'next/image'
 
 // Użycie type zamiast interface jest w pełni poprawne i jest często używane do definiowania kształtu obiektów, zwłaszcza gdy nie potrzebujesz zalet dziedziczenia, które oferują interface. Oba podejścia są poprawne i można je używać zamiennie w zależności od potrzeb.
-type Creator = {
-	picture: string
-	firstName: string
-	lastName: string
-}
+// type Creator = {
+// 	picture: string
+// 	firstName: string
+// 	lastName: string
+// }
 
-export default function PostSignature({ creator }: { creator: Creator | undefined }) {
+export default function PostSignature({ creator }: { creator: IUser | null }) {
 	return (
 		<div className="flex flex-start gap-2">
 			<Image
