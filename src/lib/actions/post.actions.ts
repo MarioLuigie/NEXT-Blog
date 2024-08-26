@@ -43,6 +43,7 @@ export async function createPost(
 			creator,
 			title: sanitizedTitle,
 			article: sanitizedArticle,
+			createdAt: new Date().toISOString(),
 		}
 
 		const savedPost = await PostModel.create(newPost)

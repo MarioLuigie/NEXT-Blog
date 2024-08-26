@@ -22,6 +22,10 @@ const PostSchema = new Schema({
 		required: true,
 		ref: 'User'
 	},
+	createdAt: {
+		type: String,
+		default: new Date(),
+	}
 })
 
 const PostModel = models.Post || model('Post', PostSchema)
