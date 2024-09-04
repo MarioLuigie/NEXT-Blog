@@ -10,7 +10,7 @@ import {
 	handleCreatePost,
 	handleUpdatePost,
 } from '@/lib/handlers/post.handlers'
-import { IPost } from '@/lib/types'
+import { IPost } from '@/lib/models/post.model'
 //components
 import FormField from '@/components/shared/FormField'
 import Button from '@/components/shared/Button'

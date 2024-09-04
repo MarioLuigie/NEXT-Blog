@@ -2,7 +2,7 @@
 import Link from 'next/link'
 //lib
 import { truncateText } from '@/lib/utils'
-import { IPost } from '@/lib/types'
+import { IPost } from '@/lib/models/post.model'
 //components
 import PostSignature from '@/components/content/PostSignature'
 import PostDropDownMenu from '@/components/content/PostDropDownMenu'

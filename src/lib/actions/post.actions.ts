@@ -12,7 +12,7 @@ import UserModel from '@/lib/models/user.model'
 import { PostFieldsType } from '@/lib/types/zod'
 import { deepClone } from '@/lib/utils'
 import { IDataResult } from '@/lib/types/results'
-import { IPost } from '@/lib/types'
+import { IPost } from '@/lib/models/post.model'
 
 // CREATE
 export async function createPost(

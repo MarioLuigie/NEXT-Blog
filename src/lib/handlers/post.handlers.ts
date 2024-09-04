@@ -1,7 +1,7 @@
 //modules
 import { UseFormReset } from 'react-hook-form'
 //lib
-import { IPost } from '@/lib/types'
+import { IPost } from '@/lib/models/post.model'
 import { PostFieldsType } from '@/lib/types/zod'
 import { IDataResult } from '@/lib/types/results'
 import { createPost, deletePost, updatePost } from '@/lib/actions/post.actions'

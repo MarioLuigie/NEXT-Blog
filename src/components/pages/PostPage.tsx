@@ -1,7 +1,7 @@
 //lib
 import { getPost } from '@/lib/actions/post.actions'
 import { IDataResult } from '@/lib/types/results'
-import { IPost } from '@/lib/types'
+import { IPost } from '@/lib/models/post.model'
 //components
 import PostDropDownMenu from '@/components/content/PostDropDownMenu'
 import PostSignature from '@/components/content/PostSignature'

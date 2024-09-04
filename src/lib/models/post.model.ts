@@ -1,6 +1,14 @@
 import { Schema, models, model } from 'mongoose'
 import { IUser } from '@/lib/models/user.model'
 
+export interface IPost {
+	_id: string | null
+	title: string | null
+	article: string | null
+	creator: IUser | null
+	createdAt: string | null
+}
+
 const PostSchema = new Schema({
 	title: {
 		type: String,

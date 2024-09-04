@@ -1,5 +1,5 @@
 //lib
-import { IPost } from '@/lib/types'
+import { IPost } from '@/lib/models/post.model'
 import { getPosts } from '@/lib/actions/post.actions'
 import { IDataResult } from '@/lib/types/results'
 //components
@@ -18,7 +18,7 @@ export default async function PostsListPage() {
 }
 
 // import PostsListItem from '@/components/content/PostsListItem'
-// import { IPost } from '@/lib/types'
+// import { IPost } from '@/lib/models/post.model'
 // import { getPosts } from '@/lib/actions/post.actions'
 
 // export default async function PostsList() {

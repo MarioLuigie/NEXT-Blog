@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 // import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
 //lib
 import { handleDeletePost } from '@/lib/handlers/post.handlers'
-import { IPost } from '@/lib/types'
+import { IPost } from '@/lib/models/post.model'
 import { useUser } from '@/lib/context'
 //components
 import DropDownMenu from '@/components/shared/DropDownMenu'
